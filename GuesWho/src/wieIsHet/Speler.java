@@ -6,7 +6,7 @@ public class Speler {
 
     public Speler(String naam, int score) {
         this.naam = naam;
-        this.score = 0;
+        this.score = score;
     }
 
     public String getNaam() {

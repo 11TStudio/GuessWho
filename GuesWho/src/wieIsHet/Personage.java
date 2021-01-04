@@ -7,7 +7,6 @@ public class Personage  {
 
     // ENUMS maken we en gebruikgen we in de classe zelf
     // en maken de mogelijkheden beperkt zo zoals we zelf willen
-
     // ENUM voor geslacht enkel te kiezen uit MAN of VROUW
     public enum geslachtType {
         MAN, VROUW
@@ -15,7 +14,7 @@ public class Personage  {
 
     // ENUM voor oog kleur enkel te kiezen uit onderstaande waarden
     public enum kleurOog {
-        BLAUW, BRUIN, GRIJZ
+        BLAUW, BRUIN, GRIJS
     }
 
     // ENUM voor haar kleur enkel te kiezen uit onderstaande waarden

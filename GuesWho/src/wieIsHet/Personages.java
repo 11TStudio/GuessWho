@@ -7,7 +7,7 @@ public class Personages {
 
     public Personages() {
         // We zeggen op voorhand hoeveel plaatsen we minstens nodig hebben
-        personages = new ArrayList<>(12);
+        personages = new LinkedList<>();
     }
 
     // Personage toevoegen aan onze Personages lijst :)
