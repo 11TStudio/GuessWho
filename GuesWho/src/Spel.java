@@ -1,31 +1,43 @@
 import wieIsHet.*;
+
+import java.sql.SQLOutput;
 import java.util.*;
 
 public class Spel {
     public static void main(String[] args) {
+
+        boolean loading = true;
+
+        Personage gekozenPersonageObj = null;
+
+        Personage gekozenCompPersonageObj = null;
+
+        boolean spelActief = true;
+
+        int aantalAskedQuestion = 0;
+
+        int gekozenVraagSpeler = 0;
+
         String gekozenPersonage = "";
-        String gekozenCompPersonage = "";
-        String[] gevraagdeVragenSpeler = {};
-        String[] vragenSpeler = {"Is het een vrouw?",
-                "Draagt de persoon een bril?",
-                "Heeft je persoon blauwe ogen?",
-                "Heeft je persoon bruine ogen?",
-                "Heeft je persoon grijze ogen?",
-                "Heeft hij een baard?",
-                "Heeft hij een snor?",
-                "Is je persoon kaal?",
-                "Heeft je persoon blond haar?",
-                "Heeft je persoon zwart haar?",
-                "Heeft je persoon bruin haar?",
-                "Heeft je persoon iets op zijn hoofd?"};
+
+        ArrayList<String> gevraagdeVragenSpeler = new ArrayList<String>();
 
 
+        ArrayList<String> vragenSpeler = new ArrayList<String>();
+        vragenSpeler.add("Is het een vrouw?");
+        vragenSpeler.add("Draagt de persoon een bril?");
+        vragenSpeler.add("Heeft je persoon blauwe ogen?");
+        vragenSpeler.add("Heeft je persoon bruine ogen?");
+        vragenSpeler.add("Heeft je persoon grijze ogen?");
+        vragenSpeler.add("Heeft hij een baard?");
+        vragenSpeler.add("Heeft hij een snor?");
+        vragenSpeler.add("Is je persoon kaal?");
+        vragenSpeler.add("Heeft je persoon blond haar?");
+        vragenSpeler.add("Heeft je persoon zwart haar?");
+        vragenSpeler.add("Heeft je persoon bruin haar?");
+        vragenSpeler.add("Heeft je persoon iets op zijn hoofd?");
 
-
-
-
-        String[] vragenComputer = {"asd", "asd"};
-
+        ArrayList<String> vragenComputer = vragenSpeler;
 
         Personage[][] spelRooster = new Personage[3][4];
         spelRooster[0][0] = new Personage("Levent", true, Personage.kleurOog.GRIJS, true, true, Personage.geslachtType.MAN, false, true, Personage.kleurHaar.ZWART);
@@ -42,7 +54,6 @@ public class Spel {
         spelRooster[2][3] = new Personage("Mathias", true, Personage.kleurOog.GRIJS, false, true, Personage.geslachtType.MAN, false, false, Personage.kleurHaar.ZWART);
 
 
-
         System.out.printf("%27s \n", "Welkom aan onze spel!");
         System.out.println("----~~~~~ Wie is het?  ~~~~----");
 
@@ -50,53 +61,52 @@ public class Spel {
         Scanner keyboard = new Scanner(System.in);
         System.out.print("Voer je naam in: ");
         String spelerNaam = keyboard.nextLine();
-
-
-
         System.out.println("/---------------------------------------------------/");
         // Print elk personage met bijhorende eigenschappen.
-        for(Personage[] personages : spelRooster){
-            for(Personage pers : personages){
+        for (Personage[] personages : spelRooster) {
+            for (Personage pers : personages) {
                 String baard = "Heeft geen baard.";
                 String bril = "Heeft geen bril.";
                 String hoofddeksel = "Heeft geen hoofddeksel.";
                 String snor = "Heeft geen snor.";
                 String kaal = "Kaal.";
-                if(pers.isHeeftBaard()) {
+                if (pers.isHeeftBaard()) {
                     baard = "Heeft wél een baard.";
                 }
                 if (pers.isHeeftBril()) {
                     bril = "Heeft wél een bril.";
                 }
-                if(pers.isHeeftHoofddeksel()) {
+                if (pers.isHeeftHoofddeksel()) {
                     hoofddeksel = "Heeft wél een hoofddeksel.";
                 }
-                if(pers.isHeeftSnor()) {
+                if (pers.isHeeftSnor()) {
                     snor = "Heeft wél een snor.";
                 }
-                if(pers.isKaal()) {
+                if (pers.isKaal()) {
                     kaal = "Is wél kaal.";
                 }
-                System.out.printf(" Personage: %s - %s \n  Eigenschappen: \n   Haarkleur: %s - Oogkleur: %s \n   %s %s %s \n   %s %s \n /---------------------------------------------------/ \n", pers.getNaam(), pers.getTypeGeslacht(), pers.getHaarKleur(), pers.getOogKleur(), baard, bril,hoofddeksel, snor, kaal);
+                System.out.printf(" Personage: %s - %s \n  Eigenschappen: \n   Haarkleur: %s - Oogkleur: %s \n   %s %s %s \n   %s %s \n /---------------------------------------------------/ \n", pers.getNaam(), pers.getTypeGeslacht(), pers.getHaarKleur(), pers.getOogKleur(), baard, bril, hoofddeksel, snor, kaal);
             }
         }
 
         // Kies een personage en valideer dat deze personage effectief in onze Rooster zit.
         boolean checkNaam = true;
+        System.out.print("Kies een personage via naam: ");
+        gekozenPersonage = keyboard.nextLine();
         while (checkNaam) {
-            System.out.print("Kies een personage via naam: ");
-            gekozenPersonage = keyboard.nextLine();
 
             for (Personage[] personages : spelRooster) {
                 for (Personage pers : personages) {
-                    if (pers.getNaam().equals(gekozenPersonage)) {
+                    if (pers.getNaam().toLowerCase().equals(gekozenPersonage.toLowerCase())) {
+                        gekozenPersonageObj = pers;
                         System.out.println("De naam is correct");
                         checkNaam = false;
                     }
                 }
             }
-            if(checkNaam) {
-                System.out.println("De naam bestaat niet, probeer het nog eens a.u.b.");
+            if (checkNaam) {
+                System.out.print("De naam bestaat niet, kies een personage via naam: ");
+                gekozenPersonage = keyboard.nextLine();
             }
         }
 
@@ -104,23 +114,162 @@ public class Spel {
         Random random = new Random();
         int rij = random.nextInt(3);
         int kolom = random.nextInt(4);
-        gekozenCompPersonage = spelRooster[rij][kolom].getNaam();
+        gekozenCompPersonageObj = spelRooster[rij][kolom];
         // System.out.println(gekozenCompPersonage);
 
-        boolean personageNietGevonden = true;
-        int aantalAskedQuestion = 0;
-        while (personageNietGevonden) {
-            System.out.println("Kies een vraag uit de vragenlijst door op de nummer te typen: ");
-            for (int i = 0; i < vragenSpeler.length; i++) {
-                System.out.println(i + " " + vragenSpeler[i]);
+        while (spelActief) {
+            // Print alle vragen dat beschikbaar zijn.
+            for (int i = 0; i < vragenSpeler.size(); i++) {
+                System.out.println(i + " " + vragenSpeler.get(i));
             }
-            int gekozenNummer = keyboard.nextInt();
 
-            System.out.println(vragenSpeler[gekozenNummer]);
-            gevraagdeVragenSpeler[aantalAskedQuestion] = vragenSpeler[gekozenNummer];
-            System.out.println(gevraagdeVragenSpeler[aantalAskedQuestion]);
+            // Controleer of de input een nummer is en of de nummer niet kleiner of groter dan
+            // de grootte is van de vragen beschikbaar.
+            do {
+                System.out.print("Kies een vraag uit de vragenlijst door op de nummer te typen: ");
+                while (!keyboard.hasNextInt()) {
+                    System.out.print("Dit is geen nummer! Vul een nummer in aub! ");
+                    keyboard.next();
+                }
+                gekozenVraagSpeler = keyboard.nextInt();
+            } while (!validatieVraagNummer(gekozenVraagSpeler, vragenSpeler.size()));
+
+
+
+
+            System.out.println("===================================================================");
+            System.out.println(gevraagdeVragenSpeler);
+            System.out.println("===================================================================");
             aantalAskedQuestion++;
-            break;
+            System.out.println("[DEBUG] - >");
+            System.out.println("===================================================================");
+            System.out.println("===================================================================");
+            System.out.println(gekozenPersonageObj);
+            System.out.println("===================================================================");
+            System.out.println("===================================================================");
+            System.out.println("< - [DEBUG]");
+
+
+            System.out.println("[DEBUG] - >");
+            System.out.println("===================================================================");
+            System.out.println("===================================================================");
+            System.out.println(gekozenCompPersonageObj);
+            System.out.println("===================================================================");
+            System.out.println("===================================================================");
+            System.out.println("< - [DEBUG]");
+
+
+
+            // We checken wat de computer zal zeggen.
+            switch (vragenSpeler.get(gekozenVraagSpeler)) {
+                case "Is het een vrouw?":
+                    if (gekozenCompPersonageObj.getTypeGeslacht().equals(Personage.geslachtType.VROUW)) {
+                        System.out.println("Computer: JA");
+                    } else {
+                        System.out.println("Computer: NEEN");
+                    }
+                    break;
+                case "Draagt de persoon een bril?":
+                    if (gekozenCompPersonageObj.isHeeftBril()) {
+                        System.out.println("Computer: JA");
+                    } else {
+                        System.out.println("Computer: NEEN");
+                    }
+                    break;
+                case "Heeft je persoon blauwe ogen?":
+                    if (gekozenCompPersonageObj.getOogKleur().equals(Personage.kleurOog.BLAUW)) {
+                        System.out.println("Computer: JA");
+                    } else {
+                        System.out.println("Computer: NEEN");
+                    }
+                    break;
+
+                case "Heeft je persoon bruine ogen?":
+                    if (gekozenCompPersonageObj.getOogKleur().equals(Personage.kleurOog.BRUIN)) {
+                        System.out.println("Computer: JA");
+                    } else {
+                        System.out.println("Computer: NEEN");
+                    }
+                    break;
+
+                case "Heeft je persoon grijze ogen?":
+                    if (gekozenCompPersonageObj.getOogKleur().equals(Personage.kleurOog.GRIJS)) {
+                        System.out.println("Computer: JA");
+                    } else {
+                        System.out.println("Computer: NEEN");
+                    }
+                    break;
+
+
+                case "Heeft hij een baard?":
+                    if (gekozenCompPersonageObj.isHeeftBaard()) {
+                        System.out.println("Computer: JA");
+                    } else {
+                        System.out.println("Computer: NEEN");
+                    }
+                    break;
+
+
+                case "Heeft hij een snor?":
+                    if (gekozenCompPersonageObj.isHeeftSnor()) {
+                        System.out.println("Computer: JA");
+                    } else {
+                        System.out.println("Computer: NEEN");
+                    }
+                    break;
+                case "Heeft je persoon blond haar?":
+                    if (gekozenCompPersonageObj.getHaarKleur().equals(Personage.kleurHaar.BLOND)) {
+                        System.out.println("Computer: JA");
+                    } else {
+                        System.out.println("Computer: NEEN");
+                    }
+                    break;
+                case "Heeft je persoon zwart haar?":
+                    if (gekozenCompPersonageObj.getHaarKleur().equals(Personage.kleurHaar.ZWART)) {
+                        System.out.println("Computer: JA");
+                    } else {
+                        System.out.println("Computer: NEEN");
+                    }
+                    break;
+                case "Heeft je persoon bruin haar?":
+                    if (gekozenCompPersonageObj.getHaarKleur().equals(Personage.kleurHaar.BRUIN)) {
+                        System.out.println("Computer: JA");
+                    } else {
+                        System.out.println("Computer: NEEN");
+                    }
+                    break;
+                case "Heeft je persoon iets op zijn hoofd?":
+                    if (gekozenCompPersonageObj.isHeeftHoofddeksel()) {
+                        System.out.println("Computer: JA");
+                    } else {
+                        System.out.println("Computer: NEEN");
+                    }
+                    break;
+                default:
+                    System.out.println("not working");
+            };
+
+
+            System.out.println("Wil je iemand verwijderen uit je lijst?");
+            String antwoord = keyboard.next();
+            if(antwoord.equalsIgnoreCase("ja")||antwoord.equalsIgnoreCase("j")||antwoord.equalsIgnoreCase("y")||antwoord.equalsIgnoreCase("yes")) {
+                System.out.println("This will be fun");
+            } else if(antwoord.equalsIgnoreCase("n")||antwoord.equalsIgnoreCase("no")||antwoord.equalsIgnoreCase("nee")) {
+                System.out.println("Maybe next time");
+            } else {
+                System.out.println("Invalid character");
+            }
+
+
+
+
+
+            // We zetten de gevraagde vraag in een arrayList
+            gevraagdeVragenSpeler.add(vragenSpeler.get(gekozenVraagSpeler));
+            // We verwijderen de gevraagde vraag uit de lijst van de Speler
+            vragenSpeler.remove(vragenSpeler.get(gekozenVraagSpeler));
+            // System.out.println(gevraagdeVragenSpeler[aantalAskedQuestion]);
+            // aantalAskedQuestion++;
 
 
             /*
@@ -129,7 +278,7 @@ public class Spel {
 
             break;
             */
-/*
+    /*
             int gekozenVraag = keyboard.nextInt();
 
             for (Personage[] personages : spelRooster) {
@@ -138,8 +287,7 @@ public class Spel {
                 }
             }
             */
-        }
-        // TODO: Print de personages via .voorstellingPersonages()
+            // TODO: Print de personages via .voorstellingPersonages()
 
 
         /*
@@ -200,5 +348,17 @@ public class Spel {
         wieIsHet.startSpel(naam, personage);
 
          */
+
+
+        }
+    }
+
+    // Method voor keuze vraagen voor speler.
+    private static boolean validatieVraagNummer(int choice, int sizeSpelVragen) {
+        if (choice < 0 || choice >= sizeSpelVragen) {
+            System.out.println("Deze vraag bestaat precies niet. ");
+            return false;
+        }
+        return true;
     }
 }
