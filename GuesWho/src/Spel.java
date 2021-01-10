@@ -93,6 +93,7 @@ public class Spel {
         Scanner keyboard = new Scanner(System.in);
         System.out.print("Voer je naam in: ");
         String spelerNaam = keyboard.nextLine();
+        Speler nieuweSpeler = new Speler(spelerNaam,0);
         System.out.println("/---------------------------------------------------/");
         // Print elk personage met bijhorende eigenschappen.
         for (Personage[] personages : spelRooster) {
@@ -160,9 +161,8 @@ public class Spel {
         int rij = random.nextInt(3);
         int kolom = random.nextInt(4);
         gekozenCompPersonageObj = spelRooster[rij][kolom];
-        System.out.println(gekozenCompPersonageObj);
         gekozenPersonageComp = gekozenCompPersonageObj.getNaam();
-        System.out.println(gekozenPersonageComp);
+        // System.out.println(gekozenPersonageComp);
 
         while (spelActief) {
             for (Personage[] personages : spelRooster) {
@@ -195,6 +195,7 @@ public class Spel {
                                 System.out.println("U heeft verloren, de computer heeft het goed gegokt!");
                             } else {
                                 System.out.println("U heeft gewonnen, de computer heeft het fout gegokt!");
+                                nieuweSpeler.setScore((nieuweSpeler.getScore()+1));
                             }
                             // Hier wilt em niet leaven
                             spelActief = false;
@@ -226,6 +227,7 @@ public class Spel {
                                 System.out.println("De persoon dat u over had is: " + personages[personages.length - 1].getNaam());
                                 if (gekozenCompPersonageObj.getNaam() == personages[personages.length - 1].getNaam()) {
                                     System.out.println("U heeft gewonnen!");
+                                    nieuweSpeler.setScore((nieuweSpeler.getScore()+1));
                                 } else {
                                     System.out.println("U heeft verloren");
                                 }
@@ -251,7 +253,7 @@ public class Spel {
                 if (fixGeslacht == "VROUW") {
                     switch (vragenComputer.get(gekozenVraagComputer)) {
                         case "Heeft hij een baard?":
-                        case "Heeft hij een snor":
+                        case "Heeft hij een snor?":
                             gevraagdeVragenComputer.add(vragenComputer.get(gekozenVraagComputer));
                             gekozenVraagComputer = random.nextInt(vragenComputer.size());
                             break;
@@ -294,7 +296,7 @@ public class Spel {
 
                         break;
                     case "Draagt de persoon een bril?":
-                        System.out.println("Computer vraagt: Is het een vrouw? (JA - NEE)");
+                        System.out.println("Computer vraagt: Draagt de persoon een bril? (JA - NEE)");
                         antwoordCheck = true;
                         while (antwoordCheck) {
                             String antwoord = keyboard.next();
@@ -840,7 +842,6 @@ public class Spel {
                 }
                 int gekozenPersonageSpeler = 0;
                 if (!skip) {
-                    boolean gok = false;
                     boolean kiesPersoon = false;
                     System.out.println("U mag nu iemand kiezen, type JA als u dat persoon wilt gokken. ");
                     for (Personage[] personages : spelRooster) {
@@ -906,9 +907,10 @@ public class Spel {
                             if (kiesPersoon) {
                                 String gokSpeler = pers.getNaam();
                                 if (gekozenPersonageComp.equals(gokSpeler)) {
-                                    System.out.println("U HEEFT GEWONNEN!");
+                                    System.out.println("SUPER GOED GERADEN! U HEEFT GEWONNEN!");
+                                    nieuweSpeler.setScore((nieuweSpeler.getScore()+1));
                                 } else {
-                                    System.out.println("U heeft verloren.");
+                                    System.out.println("Helaas verkeerd geraden! U heeft verloren!");
                                 }
                                 System.exit(0);
                             }
