@@ -106,8 +106,8 @@ public class Main extends Application {
         Presenter presenter = new Presenter(model, view);
         primaryStage.setTitle("Test Wie Is Het FX");
         primaryStage.setResizable(true);
-        primaryStage.setWidth(800);
-        primaryStage.setHeight(600);
+        primaryStage.setWidth(1020);
+        primaryStage.setHeight(800);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
