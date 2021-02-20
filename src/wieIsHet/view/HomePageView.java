@@ -75,25 +75,26 @@ public class HomePageView extends BorderPane {
 //        Text servicesPercent = new Text("Services\n20%");
 //        GridPane.setValignment(servicesPercent, VPos.TOP);
 //        grid.add(servicesPercent, 3, 2);
+
         int w = 0;
         for (int i = 0; i < 20; i++) {
             String img = "Person"+i;
             if (i%5==0) { w = 0; }
             if (i < 5) {
                 ImageView image = new ImageView(
-                new Image(Main.class.getResourceAsStream("graphics/Person1.png")));
+                new Image("/graphics/Person1.png"));
                 grid.add(image, 0, 0+w, 1, 1);
             } else if (i >= 5 && i < 10) {
                 ImageView image = new ImageView(
-                new Image(Main.class.getResourceAsStream("graphics/Person1.png")));
+                        new Image("/graphics/Person1.png"));
                 grid.add(image, 1, 0+w, 1, 1);
             } else if (i >= 10 && i < 15) {
                 ImageView image = new ImageView(
-                        new Image(Main.class.getResourceAsStream("graphics/Person1.png")));
+                        new Image("/graphics/Person1.png"));
                 grid.add(image, 2, 0+w, 1, 1);
             } else {
                 ImageView image = new ImageView(
-                new Image(Main.class.getResourceAsStream("graphics/Person1.png")));
+                        new Image("/graphics/Person1.png"));
                 grid.add(image, 3, 0+w, 1, 1);
             }
             w++;

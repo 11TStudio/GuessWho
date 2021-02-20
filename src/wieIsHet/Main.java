@@ -3,7 +3,7 @@ package wieIsHet;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import wieIsHet.model.HomePage;
+import wieIsHet.model.SimpelModel;
 import wieIsHet.view.HomePageView;
 import wieIsHet.view.Presenter;
 
@@ -102,7 +102,7 @@ public class Main extends Application {
 
         HomePageView view = new HomePageView();
         Scene scene = new Scene(view);
-        HomePage model = new HomePage();
+        SimpelModel model = new SimpelModel();
         Presenter presenter = new Presenter(model, view);
         primaryStage.setTitle("Test Wie Is Het FX");
         primaryStage.setResizable(true);
