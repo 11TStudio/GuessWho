@@ -58,7 +58,7 @@ public class HomePageView extends BorderPane {
 //        grid.add(chartSubtitle, 1, 1, 2, 1);
 //        // House icon in column 1, rows 1-2
 //        ImageView imageHouse = new ImageView(
-//                new Image(Main.class.getResourceAsStream("graphics/house.png")));
+//                new Image(Main.class.getResourceAsStream("images/house.png")));
 //        grid.add(imageHouse, 0, 0, 1, 1);
 //
 //        // Left label in column 1 (bottom), row 3
@@ -68,7 +68,7 @@ public class HomePageView extends BorderPane {
 //
 //        // Chart in columns 2-3, row 3
 //        ImageView imageChart = new ImageView(
-//                new Image(Main.class.getResourceAsStream("graphics/piechart.png")));
+//                new Image(Main.class.getResourceAsStream("images/piechart.png")));
 //        grid.add(imageChart, 1, 2, 2, 1);
 //
 //        // Right label in column 4 (top), row 3
@@ -82,19 +82,19 @@ public class HomePageView extends BorderPane {
             if (i%5==0) { w = 0; }
             if (i < 5) {
                 ImageView image = new ImageView(
-                new Image("/graphics/Person1.png"));
+                new Image("/images/Person1.png"));
                 grid.add(image, 0, 0+w, 1, 1);
             } else if (i >= 5 && i < 10) {
                 ImageView image = new ImageView(
-                        new Image("/graphics/Person1.png"));
+                        new Image("/images/Person1.png"));
                 grid.add(image, 1, 0+w, 1, 1);
             } else if (i >= 10 && i < 15) {
                 ImageView image = new ImageView(
-                        new Image("/graphics/Person1.png"));
+                        new Image("/images/Person1.png"));
                 grid.add(image, 2, 0+w, 1, 1);
             } else {
                 ImageView image = new ImageView(
-                        new Image("/graphics/Person1.png"));
+                        new Image("/images/Person1.png"));
                 grid.add(image, 3, 0+w, 1, 1);
             }
             w++;

@@ -1,4 +1,4 @@
-package wieIsHet;
+package wieIsHet.model;
 
 
 // Onze classe Persoange

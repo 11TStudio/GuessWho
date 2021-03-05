@@ -1,17 +1,13 @@
 package wieIsHet.view.game;
 
-import wieIsHet.model.SimpelModel;
-import wieIsHet.view.start.StartPresenter;
+import wieIsHet.model.MainModel;
 
 public class GamePresenter {
 
-    private SimpelModel model;
-    private GamePresenter view;
+    private MainModel model;
+    private GameView view;
 
-    public GamePresenter(
-            SimpelModel model,
-            GamePresenter view
-    ) {
+    public GamePresenter(MainModel model, GameView view) {
         this.model = model;
         this.view = view;
         this.addEventHandlers();
@@ -23,6 +19,9 @@ public class GamePresenter {
         // aan de controls uit de view.
         // Event handlers: roepen methodes aan uit het
         // model en zorgen voor een update van de view.
+
+
+
     }
 
     private void updateView() {

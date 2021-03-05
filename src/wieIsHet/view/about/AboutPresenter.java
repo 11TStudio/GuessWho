@@ -1,14 +1,13 @@
 package wieIsHet.view.about;
 
-import wieIsHet.model.SimpelModel;
-import wieIsHet.view.game.GamePresenter;
+import wieIsHet.model.MainModel;
 
 public class AboutPresenter {
-    private SimpelModel model;
+    private MainModel model;
     private AboutPresenter view;
 
     public AboutPresenter(
-            SimpelModel model,
+            MainModel model,
             AboutPresenter view
     ) {
         this.model = model;

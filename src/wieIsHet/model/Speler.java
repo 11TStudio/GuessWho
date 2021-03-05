@@ -1,4 +1,4 @@
-package wieIsHet;
+package wieIsHet.model;
 
 public class Speler {
     private String naam;

@@ -1,7 +1,9 @@
 package wieIsHet.view.game;
 
-public class GameView /* extends  layout type */{
+import javafx.scene.layout.BorderPane;
 
+public class GameView  extends BorderPane {
+    RosterView rosterView;
     // private Node attributen (controls)
 
     // private Node attributen (controls)
@@ -11,6 +13,8 @@ public class GameView /* extends  layout type */{
     }
 
     private void initialiseNodes() {
+
+        rosterView = new RosterView();
         // Initialisatie van de Nodes
         // bvb.:
         // button = new Button("...")
@@ -18,6 +22,7 @@ public class GameView /* extends  layout type */{
     }
 
     private void layoutNodes() {
+        this.setCenter(rosterView);
         // Layout van de Nodes
         // add… methodes (of set…)
         // Insets, padding, alignment, …

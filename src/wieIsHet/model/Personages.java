@@ -1,4 +1,4 @@
-package wieIsHet;
+package wieIsHet.model;
 
 import java.util.*;
 

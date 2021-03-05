@@ -1,14 +1,14 @@
 package wieIsHet.view.start;
 
-import wieIsHet.model.SimpelModel;
+import wieIsHet.model.MainModel;
 
 public class StartPresenter {
-    private SimpelModel model;
-    private StartPresenter view;
+    private MainModel model;
+    private StartView view;
 
     public StartPresenter(
-                    SimpelModel model,
-                    StartPresenter view
+            MainModel model,
+            StartView view
                                     ) {
             this.model = model;
             this.view = view;
