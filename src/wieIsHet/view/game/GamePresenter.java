@@ -10,6 +10,7 @@ public class GamePresenter {
     public GamePresenter(MainModel model, GameView view) {
         this.model = model;
         this.view = view;
+
         this.addEventHandlers();
         this.updateView();
     }
