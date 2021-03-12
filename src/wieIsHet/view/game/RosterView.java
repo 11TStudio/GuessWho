@@ -9,12 +9,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-
-import java.util.ArrayList;
-import java.util.List;
+import javafx.scene.layout.Priority;
 
 public class RosterView extends GridPane {
-    List<Button> buttonlist = new ArrayList<>();
+    Button button;
+    int row = 0;
+    int col = 0;
 
     public RosterView() {
         this.initialiseNodes();
@@ -23,30 +23,28 @@ public class RosterView extends GridPane {
 
     private void initialiseNodes() {
         // attributen initialiseren
-        int row = 0;
-        int col = 0;
         for (int i = 0; i < 20; i++) {
-            String img = "Person"+i;
-            // DEBUGING WITH ONLY ONE PERSON
+            String naam = "Person"+i;
             //      String loc = "/images/personages/"+img+".png";
             String loc = "/images/personages/Person1.png";
 
-            Button button = new Button(img);
-            button.setPrefSize(80, 80);
+            button = new Knop(80,80,loc,naam);
+            //button.setMinSize(80, 80);
 
-            ImageView personImage = new ImageView(new Image(loc));
-
-            button.setGraphic(personImage);
-            if(row == 4) {
+            if(row%5==0) {
                 col++;
                 row=0;
             }
+
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override public void handle(ActionEvent e) {
                     System.out.print(button+"\n");
                 }
             });
+
             this.add(button, row, col);
+            this.setHgrow(button, Priority.ALWAYS);
+            this.setHgrow(button, Priority.ALWAYS);
             System.out.print("The ROW: "+row+"\n");
             System.out.print("The COL: "+col+"\n");
             row++;
@@ -57,11 +55,11 @@ public class RosterView extends GridPane {
 
     private void layoutNodes() {
         // this. is onze view.
+
         this.setGridLinesVisible(true);
         this.setHgap(50);
         this.setVgap(35);
         this.setPadding(new Insets(15, 15, 10, 15));
-        // this.getChildren().addAll(buttonlist);
     }
 
 

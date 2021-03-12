@@ -7,8 +7,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
 
 public class GameView  extends BorderPane {
-    private ComboBox<String> cbVragen;
-    RosterView rosterView;
+    RosterView rooster;
+    FooterView footer;
     // private Node attributen (controls)
 
     // private Node attributen (controls)
@@ -19,18 +19,8 @@ public class GameView  extends BorderPane {
 
     private void initialiseNodes() {
 
-        rosterView = new RosterView();
-
-
-        this.cbVragen= new ComboBox<>();
-        ObservableList<String> namen = FXCollections.observableArrayList(
-                "Mijn vraag dat hier zal komen is wel wat lang denk ik he ?",
-                "Is je haar kleur deze kleur of dat kleur ?",
-                "Wtf Zeg Gij Moat?"
-        );
-        this.cbVragen.setItems(namen);
-        this.cbVragen.getSelectionModel().select(0);
-
+        rooster = new RosterView();
+        footer = new FooterView();
         // Initialisatie van de Nodes
         // bvb.:
         // button = new Button("...")
@@ -38,9 +28,9 @@ public class GameView  extends BorderPane {
     }
 
     private void layoutNodes() {
-        this.setCenter(rosterView);
-        this.setBottom(this.cbVragen);
-        this.setMargin(this.cbVragen, new Insets(15));
+
+        this.setBottom(footer);
+        this.setCenter(rooster);
         // Layout van de Nodes
         // add… methodes (of set…)
         // Insets, padding, alignment, …
