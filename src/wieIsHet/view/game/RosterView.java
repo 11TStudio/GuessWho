@@ -24,6 +24,7 @@ public class RosterView extends GridPane {
     private void initialiseNodes() {
         // attributen initialiseren
         for (int i = 0; i < 20; i++) {
+            // TODO: Personage19 komt meermaals terug.
             String naam = "Person"+i;
             //      String loc = "/images/personages/"+img+".png";
             String loc = "/images/personages/Person1.png";
