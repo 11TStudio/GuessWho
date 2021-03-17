@@ -24,12 +24,14 @@ public class RosterView extends GridPane {
     private void initialiseNodes() {
         // attributen initialiseren
         for (int i = 0; i < 20; i++) {
+            final int buttonNumber = i;
             // TODO: Personage19 komt meermaals terug.
+            // Gefixt door final te gebruiken.
             String naam = "Person"+i;
             //      String loc = "/images/personages/"+img+".png";
             String loc = "/images/personages/Person1.png";
 
-            button = new Knop(80,80,loc,naam);
+            final Knop button = new Knop(80,80,loc,naam);
             //button.setMinSize(80, 80);
 
             if(row%5==0) {
@@ -39,7 +41,8 @@ public class RosterView extends GridPane {
 
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override public void handle(ActionEvent e) {
-                    System.out.print(button+"\n");
+
+                    System.out.print(button+"\n"+ buttonNumber +"\n");
                 }
             });
 
