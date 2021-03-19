@@ -6,29 +6,18 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Priority;
+import wieIsHet.model.MainModel;
 
 
 public class Knop extends Button {
-    int row = 0;
-    int col = 0;
-    Button button;
-    final int MAX_PERS = 20;
-
-    public Knop(int row, int col, String locatie, String personageNaam) {
-        this.row = row;
-        this.col = col;
+    MainModel model = new MainModel();
+    public Knop (int x, int y, String locatie, String personageNaam, int PersoonNummer) {
         ImageView personImage = new ImageView(new Image(locatie));
-        setText(personageNaam);
+        personImage.setFitWidth(y);
+        personImage.setFitHeight(x);
+        setText(model.getNamePersonage(PersoonNummer));
 
         setGraphic(personImage);
-        setPrefSize(100, 70);
-    }
-
-    public int getRow() {
-        return row;
-    }
-
-    public int getCol() {
-        return col;
+        setPrefSize(x, y);
     }
 }

@@ -36,7 +36,12 @@ public class GameView  extends BorderPane {
         // Insets, padding, alignment, …
     }
 
+    public RosterView getRooster() {
+        return rooster;
+    }
+
     // implementatie van de nodige
     // package-private Getters
+
 
 }

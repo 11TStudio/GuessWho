@@ -5,36 +5,38 @@ package wieIsHet.model;
 // Comparable implementeert altijd de klasse waar het implements.
 public class Personage  {
 
-    // ENUMS maken we en gebruikgen we in de classe zelf
-    // en maken de mogelijkheden beperkt zo zoals we zelf willen
-    // ENUM voor geslacht enkel te kiezen uit MAN of VROUW
-    public enum geslachtType {
-        MAN, VROUW
-    }
 
-    // ENUM voor oog kleur enkel te kiezen uit onderstaande waarden
-    public enum kleurOog {
-        BLAUW, BRUIN, GRIJS
-    }
-
-    // ENUM voor haar kleur enkel te kiezen uit onderstaande waarden
-    public enum kleurHaar {
-        BLOND, ZWART, BRUIN
-    }
+//
+//    // ENUMS maken we en gebruikgen we in de classe zelf
+//    // en maken de mogelijkheden beperkt zo zoals we zelf willen
+//    // ENUM voor geslacht enkel te kiezen uit MAN of VROUW
+//    public enum geslachtType {
+//        MAN, VROUW
+//    }
+//
+//    // ENUM voor oog kleur enkel te kiezen uit onderstaande waarden
+//    public enum kleurOog {
+//        BLAUW, BRUIN, GRIJS
+//    }
+//
+//    // ENUM voor haar kleur enkel te kiezen uit onderstaande waarden
+//    public enum kleurHaar {
+//        BLOND, ZWART, BRUIN
+//    }
 
     // Define the attirbutes
     private String naam;
-    private boolean heeftBaard;
-    private kleurOog oogKleur;
-    private boolean heeftBril;
-    private boolean heeftSnor;
-    private geslachtType typeGeslacht;
-    private boolean isKaal;
-    private boolean heeftHoofddeksel;
-    private kleurHaar haarKleur;
+    private String heeftBaard;
+    private String oogKleur;
+    private String heeftBril;
+    private String heeftSnor;
+    private String typeGeslacht;
+    private String isKaal;
+    private String heeftHoofddeksel;
+    private String haarKleur;
 
     // Constructor for the Personage
-    public Personage(String naam, boolean heeftBaard, kleurOog oogKleur, boolean heeftBril, boolean heeftSnor, geslachtType typeGeslacht, boolean isKaal, boolean heeftHoofddeksel, kleurHaar haarKleur) {
+    public Personage(String naam, String heeftBaard, String oogKleur, String heeftBril, String heeftSnor, String typeGeslacht, String isKaal, String heeftHoofddeksel, String haarKleur) {
         this.naam = naam;
         this.heeftBaard = heeftBaard;
         this.oogKleur = oogKleur;
@@ -51,35 +53,35 @@ public class Personage  {
         return naam;
     }
 
-    public boolean isHeeftBaard() {
+    public String isHeeftBaard() {
         return heeftBaard;
     }
 
-    public kleurOog getOogKleur() {
+    public String getOogKleur() {
         return oogKleur;
     }
 
-    public boolean isHeeftBril() {
+    public String isHeeftBril() {
         return heeftBril;
     }
 
-    public boolean isHeeftSnor() {
+    public String isHeeftSnor() {
         return heeftSnor;
     }
 
-    public geslachtType getTypeGeslacht() {
+    public String getTypeGeslacht() {
         return typeGeslacht;
     }
 
-    public boolean isKaal() {
+    public String isKaal() {
         return isKaal;
     }
 
-    public boolean isHeeftHoofddeksel() {
+    public String isHeeftHoofddeksel() {
         return heeftHoofddeksel;
     }
 
-    public kleurHaar getHaarKleur() {
+    public String getHaarKleur() {
         return haarKleur;
     }
 

@@ -1,24 +1,60 @@
 package wieIsHet.model;
 
+import java.io.*;
 import java.util.*;
+import java.util.stream.DoubleStream;
 
 public class Personages {
     List<Personage> personages;
+    private final InputStream inputStream;
 
     public Personages() {
         // We zeggen op voorhand hoeveel plaatsen we minstens nodig hebben
         personages = new LinkedList<>();
+        this.inputStream = this.getClass().getResourceAsStream("/game_assets/personages.txt");
+        this.readPersonages();
     }
 
-    // Personage toevoegen aan onze Personages lijst :)
-    public void voegPersonageToe(Personage personage) {
-        personages.add(personage);
+
+    public List<Personage> getPersonages() {
+        return personages;
     }
 
-    public void voorstellingPersonages() {
-        sorteerGeslachtNaam();
-        System.out.println("personages= "+personages+"\n");
+    public Personage getPersonage(int i) {
+        return personages.get(i);
     }
+
+    public int getSize() {
+        return personages.size();
+    }
+
+
+    private void readPersonages() {
+        // Hier aanvullen...
+        try(BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))){
+            String line = reader.readLine();
+            Personage personage;
+            while(line != null) {
+                String[] stukken = line.split(";");
+                // String naam,
+                // String heeftBaard,
+                // String oogKleur,
+                // String heeftBril,
+                // String heeftSnor,
+                // String typeGeslacht,
+                // String isKaal,
+                // String heeftHoofddeksel,
+                // String haarKleur
+                personage = new Personage(stukken[0], stukken[1], stukken[2], stukken[3], stukken[4], stukken[5], stukken[6], stukken[7], stukken[8]);
+                personages.add(personage);
+                line = reader.readLine(); // lees den volgende
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     // Sorteerfunctie op String naam.
     public void sorteerGeslachtNaam() {
@@ -38,12 +74,8 @@ public class Personages {
                 return o1.getTypeGeslacht().compareTo(o2.getTypeGeslacht());
             }
         });
-        // enkel uitcommenten om te debuggen !!!
-        // System.out.println("personages= "+personages+"\n");
-    }
 
-    // ToString methode
-    // Sorteren op naam
+    }
 
     @Override
     public String toString() {
