@@ -55,4 +55,5 @@ public class KiesView extends GridPane {
     public List<Button> getPersonagesButtons() {
         return personagesButtons;
     }
+
 }

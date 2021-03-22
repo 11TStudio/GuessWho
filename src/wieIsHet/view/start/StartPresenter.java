@@ -3,13 +3,13 @@ package wieIsHet.view.start;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import wieIsHet.model.MainModel;
-import wieIsHet.view.game.GamePresenter;
-import wieIsHet.view.game.GameView;
+import wieIsHet.view.game.KiesPersPresenter;
+import wieIsHet.view.game.KiesView;
 
 public class StartPresenter {
     final MainModel model;
     final StartView startView;
-    GameView gameView;
+    KiesView kiesView;
 
     public StartPresenter(
             MainModel model,
@@ -41,20 +41,20 @@ public class StartPresenter {
                             break;
                         case "Start PvC":
                             System.out.println("Clicked on Start PvC");
-                            GameView gameView = new GameView();
-                            GamePresenter gamePresenter = new GamePresenter(model, gameView);
-                            startView.getScene().setRoot(gameView);
-                            gameView.getScene().getWindow().sizeToScene();
+                            KiesView kiesView = new KiesView();
+                            KiesPersPresenter kiesPersPresenter = new KiesPersPresenter(model, kiesView);
+                            startView.getScene().setRoot(kiesView);
+                            kiesView.getScene().getWindow().sizeToScene();
                             break;
                         case "About Us":
-                            System.out.println("Clicked on Start PvP");
+                            System.out.println("Clicked on About Us");
 //                            GameView gameView = new GameView();
 //                            GamePresenter gamePresenter = new GamePresenter(model, gameView);
 //                            startView.getScene().setRoot(gameView);
 //                            gameView.getScene().getWindow().sizeToScene();
                             break;
                         default:
-                            System.out.println("Clicked on Start PvP");
+                            System.out.println("Clicked on Exit");
 //                            GameView gameView = new GameView();
 //                            GamePresenter gamePresenter = new GamePresenter(model, gameView);
 //                            startView.getScene().setRoot(gameView);
