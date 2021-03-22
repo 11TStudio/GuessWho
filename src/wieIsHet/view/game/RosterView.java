@@ -26,21 +26,21 @@ public class RosterView extends GridPane {
     }
 
     private void initialiseNodes() {
-        // attributen initialiseren
-        for (int i = 0; i < model.getSizePersonages(); i++) {
-            persoonNaam = "Personage"+(i+1);
-            String loc = "/images/personages/"+persoonNaam+".png";
-            Knop knopje = new Knop(80,80,loc,persoonNaam, i);
-            setHgrow(knopje, Priority.ALWAYS);
-            setHgrow(knopje, Priority.ALWAYS);
-            personagesButtons.add(knopje);
-            if(row%5==0) {
-                col++;
-                row=0;
-            }
-            this.add(personagesButtons.get(i), row, col);
-            row++;
-        }
+//        // attributen initialiseren
+//        for (int i = 0; i < model.getSizePersonages(); i++) {
+//            persoonNaam = "Personage"+(i+1);
+//            String loc = "/images/personages/"+persoonNaam+".png";
+//            Knop knopje = new Knop(80,80,loc,persoonNaam, i);
+//            setHgrow(knopje, Priority.ALWAYS);
+//            setHgrow(knopje, Priority.ALWAYS);
+//            personagesButtons.add(knopje);
+//            if(row%5==0) {
+//                col++;
+//                row=0;
+//            }
+//            this.add(personagesButtons.get(i), row, col);
+//            row++;
+//        }
 
     }
 
@@ -55,5 +55,8 @@ public class RosterView extends GridPane {
 
     public List<Button> getPersonagesButtons() {
         return personagesButtons;
+    }
+    public void removePersonageButton() {
+        //this.initialiseNodes();
     }
 }

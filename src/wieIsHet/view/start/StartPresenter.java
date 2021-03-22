@@ -1,17 +1,22 @@
 package wieIsHet.view.start;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import wieIsHet.model.MainModel;
+import wieIsHet.view.game.GamePresenter;
+import wieIsHet.view.game.GameView;
 
 public class StartPresenter {
-    private MainModel model;
-    private StartView view;
+    final MainModel model;
+    final StartView startView;
+    GameView gameView;
 
     public StartPresenter(
             MainModel model,
-            StartView view
+            StartView startView
                                     ) {
             this.model = model;
-            this.view = view;
+            this.startView = startView;
             this.addEventHandlers();
             this.updateView();
     }
@@ -21,6 +26,43 @@ public class StartPresenter {
         // aan de controls uit de view.
         // Event handlers: roepen methodes aan uit het
         // model en zorgen voor een update van de view.
+
+        startView.getButtonsView().getBtnsStartScherm().forEach(button -> {
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    switch(button.getText()) {
+                        case "Start PvP":
+                            System.out.println("Clicked on Start PvP");
+//                            GameView gameView = new GameView();
+//                            GamePresenter gamePresenter = new GamePresenter(model, gameView);
+//                            startView.getScene().setRoot(gameView);
+//                            gameView.getScene().getWindow().sizeToScene();
+                            break;
+                        case "Start PvC":
+                            System.out.println("Clicked on Start PvC");
+                            GameView gameView = new GameView();
+                            GamePresenter gamePresenter = new GamePresenter(model, gameView);
+                            startView.getScene().setRoot(gameView);
+                            gameView.getScene().getWindow().sizeToScene();
+                            break;
+                        case "About Us":
+                            System.out.println("Clicked on Start PvP");
+//                            GameView gameView = new GameView();
+//                            GamePresenter gamePresenter = new GamePresenter(model, gameView);
+//                            startView.getScene().setRoot(gameView);
+//                            gameView.getScene().getWindow().sizeToScene();
+                            break;
+                        default:
+                            System.out.println("Clicked on Start PvP");
+//                            GameView gameView = new GameView();
+//                            GamePresenter gamePresenter = new GamePresenter(model, gameView);
+//                            startView.getScene().setRoot(gameView);
+//                            gameView.getScene().getWindow().sizeToScene();
+                    }
+                }
+            });
+        });
     }
 
     private void updateView() {
@@ -31,5 +73,6 @@ public class StartPresenter {
         // Window event handlers (anon. inner klassen)
         // Koppeling via view.getScene().getWindow()
     }
+
 }
 

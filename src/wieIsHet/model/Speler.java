@@ -4,9 +4,7 @@ public class Speler {
     private String naam;
     private int score;
 
-    public Speler(String naam, int score) {
-        this.naam = naam;
-        this.score = score;
+    public Speler() {
     }
 
     public String getNaam() {
@@ -25,11 +23,4 @@ public class Speler {
         this.score = score;
     }
 
-    @Override
-    public String toString() {
-        return "Speler{" +
-                "naam='" + naam + '\'' +
-                ", score=" + score +
-                '}';
-    }
 }

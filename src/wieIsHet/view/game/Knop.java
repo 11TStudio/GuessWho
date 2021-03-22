@@ -1,23 +1,29 @@
 package wieIsHet.view.game;
 
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Priority;
-import wieIsHet.model.MainModel;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.media.AudioClip;
 
 
 public class Knop extends Button {
-    MainModel model = new MainModel();
-    public Knop (int x, int y, String locatie, String personageNaam, int PersoonNummer) {
+    public Knop (double height, double width, String locatie, String personageNaam) {
         ImageView personImage = new ImageView(new Image(locatie));
-        personImage.setFitWidth(y);
-        personImage.setFitHeight(x);
-        setText(model.getNamePersonage(PersoonNummer));
-
+        personImage.setFitWidth(width);
+        personImage.setFitHeight(height);
+        setCursor(Cursor.HAND);
+        setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                AudioClip clickSound = new AudioClip(this.getClass().getResource("/media/onMouseClick.mp3").toExternalForm());
+                clickSound.play();
+            }
+        });
+        setText(personageNaam);
         setGraphic(personImage);
-        setPrefSize(x, y);
+        setPrefSize(height, width);
     }
 }

@@ -7,7 +7,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
 
 public class GameView  extends BorderPane {
-    RosterView rooster;
+    RosterView personageView;
+    VerwijderPersView verwijderView;
     FooterView footer;
     // private Node attributen (controls)
 
@@ -18,9 +19,9 @@ public class GameView  extends BorderPane {
     }
 
     private void initialiseNodes() {
-
-        rooster = new RosterView();
+        personageView = new RosterView();
         footer = new FooterView();
+        verwijderView = new VerwijderPersView();
         // Initialisatie van de Nodes
         // bvb.:
         // button = new Button("...")
@@ -28,16 +29,19 @@ public class GameView  extends BorderPane {
     }
 
     private void layoutNodes() {
-
         this.setBottom(footer);
-        this.setCenter(rooster);
+        this.setCenter(verwijderView/*personageView*/);
         // Layout van de Nodes
         // add… methodes (of set…)
         // Insets, padding, alignment, …
     }
 
-    public RosterView getRooster() {
-        return rooster;
+    public RosterView getPersonageView() {
+        return personageView;
+    }
+
+    public VerwijderPersView getVerwijderView() {
+        return verwijderView;
     }
 
     // implementatie van de nodige

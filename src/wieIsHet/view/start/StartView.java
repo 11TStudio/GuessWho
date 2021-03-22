@@ -1,18 +1,17 @@
 package wieIsHet.view.start;
 
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
 public class StartView extends BorderPane {
 
     // private Node attributen (controls)
-    Button btnStartPVC;
-    Button btnStartPVP;
-    Button btnExit;
+    ButtonsView buttonsView;
     Image achtergrond;
+
     // private Node attributen (controls)
     public StartView() {
+        buttonsView = new ButtonsView();
         this.initialiseNodes();
         this.layoutNodes();
     }
@@ -22,10 +21,8 @@ public class StartView extends BorderPane {
         // bvb.:
         // button = new Button("...")
         // label = new Label("...")
-        btnStartPVP = new Button("PvP");
-        btnStartPVC = new Button("PvC");
-        btnExit = new Button("EXIT");
         achtergrond = new Image("images/backgrounds/achterground.png");
+
 
     }
 
@@ -33,14 +30,18 @@ public class StartView extends BorderPane {
         // Layout van de Nodes
         // add… methodes (of set…)
         // Insets, padding, alignment, …
+        this.setCenter(buttonsView);
         this.setBackground(new Background(new BackgroundImage(achtergrond,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER,
                 BackgroundSize.DEFAULT)));
+
     }
 
     // implementatie van de nodige
     // package-private Getters
-
+    public ButtonsView getButtonsView() {
+        return buttonsView;
+    }
 }

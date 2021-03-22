@@ -13,6 +13,7 @@ public class Personages {
         personages = new LinkedList<>();
         this.inputStream = this.getClass().getResourceAsStream("/game_assets/personages.txt");
         this.readPersonages();
+        this.writePersonages();
     }
 
 
@@ -37,7 +38,7 @@ public class Personages {
             while(line != null) {
                 String[] stukken = line.split(";");
                 // String naam,
-                // String heeftBaard,
+                // String heeftBaard,removePersonage
                 // String oogKleur,
                 // String heeftBril,
                 // String heeftSnor,
@@ -45,7 +46,7 @@ public class Personages {
                 // String isKaal,
                 // String heeftHoofddeksel,
                 // String haarKleur
-                personage = new Personage(stukken[0], stukken[1], stukken[2], stukken[3], stukken[4], stukken[5], stukken[6], stukken[7], stukken[8]);
+                personage = new Personage(stukken[0], stukken[1], stukken[2], stukken[3], stukken[4], stukken[5], stukken[6], stukken[7], stukken[8], stukken[9]);
                 personages.add(personage);
                 line = reader.readLine(); // lees den volgende
             }
@@ -53,6 +54,25 @@ public class Personages {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void writePersonages() {
+        // Hier aanvullen...
+        try (BufferedWriter bw = new BufferedWriter(new PrintWriter("testPersonages.txt"))) {
+            for (Personage person : personages) {
+                System.out.println(person);
+                bw.write(person.toString());
+                bw.newLine();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void removePersonage(Personage pers) {
+        personages.remove(pers);
     }
 
 

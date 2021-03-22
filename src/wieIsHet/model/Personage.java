@@ -3,28 +3,9 @@ package wieIsHet.model;
 
 // Onze classe Persoange
 // Comparable implementeert altijd de klasse waar het implements.
+
 public class Personage  {
 
-
-//
-//    // ENUMS maken we en gebruikgen we in de classe zelf
-//    // en maken de mogelijkheden beperkt zo zoals we zelf willen
-//    // ENUM voor geslacht enkel te kiezen uit MAN of VROUW
-//    public enum geslachtType {
-//        MAN, VROUW
-//    }
-//
-//    // ENUM voor oog kleur enkel te kiezen uit onderstaande waarden
-//    public enum kleurOog {
-//        BLAUW, BRUIN, GRIJS
-//    }
-//
-//    // ENUM voor haar kleur enkel te kiezen uit onderstaande waarden
-//    public enum kleurHaar {
-//        BLOND, ZWART, BRUIN
-//    }
-
-    // Define the attirbutes
     private String naam;
     private String heeftBaard;
     private String oogKleur;
@@ -34,9 +15,9 @@ public class Personage  {
     private String isKaal;
     private String heeftHoofddeksel;
     private String haarKleur;
+    private String isActive;
 
-    // Constructor for the Personage
-    public Personage(String naam, String heeftBaard, String oogKleur, String heeftBril, String heeftSnor, String typeGeslacht, String isKaal, String heeftHoofddeksel, String haarKleur) {
+    public Personage(String naam, String heeftBaard, String oogKleur, String heeftBril, String heeftSnor, String typeGeslacht, String isKaal, String heeftHoofddeksel, String haarKleur, String status) {
         this.naam = naam;
         this.heeftBaard = heeftBaard;
         this.oogKleur = oogKleur;
@@ -46,9 +27,9 @@ public class Personage  {
         this.isKaal = isKaal;
         this.heeftHoofddeksel = heeftHoofddeksel;
         this.haarKleur = haarKleur;
+        this.isActive = status;
     }
 
-    // GET METHODS voor alle attributen
     public String getNaam() {
         return naam;
     }
@@ -85,21 +66,16 @@ public class Personage  {
         return haarKleur;
     }
 
+    public String isActive() {
+        return isActive;
+    }
 
+    public void setInActive(boolean status) {
+        this.isActive = "NEE";
+    }
 
-    // TO STING METHODE voor Personage
     @Override
     public String toString() {
-        return "Personage{" +
-                "naam='" + naam + '\'' +
-                ", heeftBaard=" + heeftBaard +
-                ", oogKleur=" + oogKleur +
-                ", heeftBril=" + heeftBril +
-                ", heeftSnor=" + heeftSnor +
-                ", typeGeslacht=" + typeGeslacht +
-                ", isKaal=" + isKaal +
-                ", heeftHoofddeksel=" + heeftHoofddeksel +
-                ", haarKleur=" + haarKleur +
-                '}';
+        return naam + ';' + heeftBaard + ';' + oogKleur + ';' + heeftBril + ';' + heeftSnor + ';' + typeGeslacht + ';' + isKaal + ';' + heeftHoofddeksel + ';' + haarKleur + ';' + isActive;
     }
 }

@@ -1,8 +1,6 @@
 package wieIsHet.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
 import java.util.Scanner;
 
 public class MainModel {
@@ -10,27 +8,60 @@ public class MainModel {
     Personage gekozenPersoonSpeler = null;
     Personage gekozenPersonageComputer = null;
 
-    Personages allPersonages = new Personages();
+    Personages allPersonagesSpeler1 = new Personages();
+    Personages allPersonagesSpeler2 = new Personages();
+
+    Speler speler1 = new Speler();
+    Speler speler2 = new Speler();
+
+    boolean turnSpeler1 = true;
+
+
+
+    public Personages getAllPersonagesSpeler1() {
+        return allPersonagesSpeler1;
+    }
+
+    public Personages getAllPersonagesSpeler2() {
+        return allPersonagesSpeler2;
+    }
+
 
 
     public int getSizePersonages() {
-        return allPersonages.getSize();
-    }
-
-    public String getNamePersonage(int i) {
-        return allPersonages.getPersonage(i).getNaam();
+        return allPersonagesSpeler1.getSize();
     }
 
 
     public void setPersonageSpeler(String personageNaam) {
         for (int i = 0; i < getSizePersonages(); i++) {
-            if (allPersonages.getPersonage(i).getNaam().equals(personageNaam)){
-                gekozenPersoonSpeler = allPersonages.getPersonage(i);
+            if (allPersonagesSpeler1.getPersonage(i).getNaam().equals(personageNaam)){
+                gekozenPersoonSpeler = allPersonagesSpeler1.getPersonage(i);
                 System.out.println(gekozenPersoonSpeler);
             };
 
         }
     }
+
+    public void setSpeler1(String spelerNaam, int score){
+        speler1.setNaam(spelerNaam);
+        speler1.setScore(score);
+    }
+
+    public void setSpeler2(String spelerNaam, int score){
+        speler2.setNaam(spelerNaam);
+        speler2.setScore(score);
+    }
+
+    public boolean isTurnSpeler1() {
+        return turnSpeler1;
+    }
+
+    public void setTurnSpeler1(boolean turnSpeler1) {
+        this.turnSpeler1 = turnSpeler1;
+    }
+
+
 
 
     //    public static void main(String[] args) {

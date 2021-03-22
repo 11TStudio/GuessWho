@@ -3,17 +3,18 @@ package wieIsHet.view.game;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import wieIsHet.model.MainModel;
-import wieIsHet.model.Personages;
 
 public class GamePresenter {
     MainModel model;
     GameView gameView;
     RosterView rosterView;
+    VerwijderPersView VerwijderPersView;
 
     public GamePresenter(MainModel model, GameView gameView) {
         this.model = model;
         this.gameView = gameView;
-        this.rosterView = gameView.getRooster();
+        this.rosterView = gameView.getPersonageView();
+        this.VerwijderPersView = gameView.getVerwijderView();
 
         this.addEventHandlers();
         this.updateView();
@@ -25,23 +26,34 @@ public class GamePresenter {
         // aan de controls uit de view.
         // Event handlers: roepen methodes aan uit het
         // model en zorgen voor een update van de view.
-        for (int i = 0; i < model.getSizePersonages(); i++) {
-            final int fix_i=i;
-            rosterView.getPersonagesButtons().get(i).setOnAction(new EventHandler<ActionEvent>() {
+        VerwijderPersView.getPersonagesButtons().forEach(button -> {
+            button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
-                    // Hier komt de naam.
-                    model.setPersonageSpeler(rosterView.getPersonagesButtons().get(fix_i).getText());
+                    if(model.isTurnSpeler1()) {
+                        model.getAllPersonagesSpeler1().getPersonages().forEach(personage -> {
+                            if(button.getText().equals(personage.getNaam())) {
+                                personage.setInActive(true);
+                                button.setDisable(true);
+                            }
+                        });
+                    } else {
+                        model.getAllPersonagesSpeler2().getPersonages().forEach(personage -> {
+                            if(button.getText().equals(personage.getNaam())) {
+                                personage.setInActive(true);
+                                button.setDisable(true);
+                            }
+                        });
+                    }
                 }
             });
-        }
-
-
-
+        });
     }
 
     private void updateView() {
+
         // Vult de view met data uit model
+
 
     }
 
