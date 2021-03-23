@@ -1,8 +1,11 @@
-package wieIsHet.view.game;
+package wieIsHet.view.kies;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import wieIsHet.model.MainModel;
+import wieIsHet.view.game.GamePresenter;
+import wieIsHet.view.game.GameView;
+import wieIsHet.view.game.RightSidebarView;
 
 public class KiesPersPresenter {
     MainModel model;
@@ -28,8 +31,13 @@ public class KiesPersPresenter {
                 public void handle(ActionEvent actionEvent) {
                     model.getAllPersonagesSpeler1().getPersonages().forEach(personage -> {
                         if(button.getText().equals(personage.getNaam())) {
-                            personage.setInActive(true);
-                            button.setDisable(true);
+                            model.setGekozenPersoonSpeler1(personage);
+                            GameView gameView = new GameView();
+                            GamePresenter gamePresenter = new GamePresenter(model, gameView);
+                            kiesView.getScene().setRoot(gameView);
+                            // Default width and height for the whole project
+                            gameView.getScene().getWindow().setWidth(1020);
+                            gameView.getScene().getWindow().setHeight(650);
                         }
                     });
                 }

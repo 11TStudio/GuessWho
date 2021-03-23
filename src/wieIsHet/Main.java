@@ -21,7 +21,7 @@ public class Main extends Application {
         primaryStage.setTitle("Wie is Het - Start");
         primaryStage.setResizable(true);
         primaryStage.setWidth(1020);
-        primaryStage.setHeight(600);
+        primaryStage.setHeight(650);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

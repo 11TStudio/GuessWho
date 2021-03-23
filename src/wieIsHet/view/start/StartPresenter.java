@@ -3,8 +3,8 @@ package wieIsHet.view.start;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import wieIsHet.model.MainModel;
-import wieIsHet.view.game.KiesPersPresenter;
-import wieIsHet.view.game.KiesView;
+import wieIsHet.view.kies.KiesPersPresenter;
+import wieIsHet.view.kies.KiesView;
 
 public class StartPresenter {
     final MainModel model;
@@ -33,6 +33,8 @@ public class StartPresenter {
                 public void handle(ActionEvent event) {
                     switch(button.getText()) {
                         case "Start PvP":
+                            // TODO: model.setPVP(true)
+                            // TODO: Een systeem om de views te veranderen per click.
                             System.out.println("Clicked on Start PvP");
 //                            GameView gameView = new GameView();
 //                            GamePresenter gamePresenter = new GamePresenter(model, gameView);
@@ -44,7 +46,9 @@ public class StartPresenter {
                             KiesView kiesView = new KiesView();
                             KiesPersPresenter kiesPersPresenter = new KiesPersPresenter(model, kiesView);
                             startView.getScene().setRoot(kiesView);
-                            kiesView.getScene().getWindow().sizeToScene();
+                            // Default width and height for the whole project
+                            kiesView.getScene().getWindow().setWidth(1020);
+                            kiesView.getScene().getWindow().setHeight(650);
                             break;
                         case "About Us":
                             System.out.println("Clicked on About Us");

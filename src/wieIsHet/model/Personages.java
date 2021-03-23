@@ -38,7 +38,7 @@ public class Personages {
             while(line != null) {
                 String[] stukken = line.split(";");
                 // String naam,
-                // String heeftBaard,removePersonage
+                // String heeftBaard,
                 // String oogKleur,
                 // String heeftBril,
                 // String heeftSnor,
@@ -60,7 +60,6 @@ public class Personages {
         // Hier aanvullen...
         try (BufferedWriter bw = new BufferedWriter(new PrintWriter("testPersonages.txt"))) {
             for (Personage person : personages) {
-                System.out.println(person);
                 bw.write(person.toString());
                 bw.newLine();
             }

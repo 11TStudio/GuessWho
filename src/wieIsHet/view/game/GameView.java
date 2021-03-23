@@ -10,9 +10,8 @@ public class GameView  extends BorderPane {
     RosterView personageView;
     VerwijderPersView verwijderView;
     FooterView footer;
-    // private Node attributen (controls)
+    RightSidebarView rightSidebar;
 
-    // private Node attributen (controls)
     public GameView() {
         this.initialiseNodes();
         this.layoutNodes();
@@ -22,18 +21,13 @@ public class GameView  extends BorderPane {
         personageView = new RosterView();
         footer = new FooterView();
         verwijderView = new VerwijderPersView();
-        // Initialisatie van de Nodes
-        // bvb.:
-        // button = new Button("...")
-        // label = new Label("...")
+        rightSidebar = new RightSidebarView();
     }
 
     private void layoutNodes() {
-        this.setBottom(footer);
-        this.setCenter(verwijderView/*personageView*/);
-        // Layout van de Nodes
-        // add… methodes (of set…)
-        // Insets, padding, alignment, …
+        setBottom(footer);
+        setCenter(verwijderView);
+        setRight(rightSidebar);
     }
 
     public RosterView getPersonageView() {
@@ -44,8 +38,8 @@ public class GameView  extends BorderPane {
         return verwijderView;
     }
 
-    // implementatie van de nodige
-    // package-private Getters
-
+    public RightSidebarView getRightSidebarView() {
+        return rightSidebar;
+    }
 
 }

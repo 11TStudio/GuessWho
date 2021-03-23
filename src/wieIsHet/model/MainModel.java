@@ -1,65 +1,194 @@
 package wieIsHet.model;
 
+import wieIsHet.Log;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+/**
+ * De klasse MainModel is de belangrijkste modelklasse die de
+ * spelintelligentie bevat.
+ * Alle gekozen personages, alle beschikbare personages, spelers naam,
+ * score en de huidige turn en de soort spel (PvP or PvC) wordt hier opgeslagen.
+ * Hier wordt ook beslist wanneer het spel gedaan is en of er gewonnen werd.
+ *
+ * @author LeventHAN
+ * @version 1.0
+ */
 public class MainModel {
-
-    Personage gekozenPersoonSpeler = null;
-    Personage gekozenPersonageComputer = null;
-
-    Personages allPersonagesSpeler1 = new Personages();
-    Personages allPersonagesSpeler2 = new Personages();
-
-    Speler speler1 = new Speler();
-    Speler speler2 = new Speler();
-
-    boolean turnSpeler1 = true;
+    private Personage gekozenPersoonSpeler1 = null;
+    private Personage gekozenPersoonSpeler2 = null;
+    private Personages allPersonagesSpeler1 = new Personages();
+    private Personages allPersonagesSpeler2 = new Personages();
+    private Speler speler1 = new Speler();
+    private Speler speler2 = new Speler();
+    private boolean foundIt;
+    private boolean isPVP = false;
+    private boolean turnSpeler1 = true;
 
 
+    /**
+     * Herstart het spel. De settings blijven behouden. Een nieuwe opgave wordt gegenereerd.
+     */
+    public void restart() {
+        Log.debug("Spel is opnieuw gestard.");
+        foundIt = false;
+        gekozenPersoonSpeler1 = null;
+        gekozenPersoonSpeler2 = null;
+        allPersonagesSpeler1 = new Personages();
+        allPersonagesSpeler2 = new Personages();
+        speler1 = new Speler();
+        speler2 = new Speler();
+        turnSpeler1 = true;
+        isPVP = false;
+    }
 
+    /**
+     * Getter voor de game type.
+     * @returns isPvP (true OR false)
+     * @author LeventHAN
+     */
+    public boolean isPVP() {
+        return isPVP;
+    }
+
+    /**
+     * Setter voor de game type. Als true dan is de gametype Speler vs Speler
+     * anders is het speltype computer vs speler.
+     * @param PVP Een boolean true/false
+     * @author LeventHAN
+     */
+    public void setPVP(boolean PVP) {
+        isPVP = PVP;
+    }
+
+    /**
+     * Getter voor de Personages (een List<Personage>).
+     * Deze wordt gebruikt voor speler 1
+     * @return allPersonagesSpeler1
+     * @author LeventHAN
+     */
     public Personages getAllPersonagesSpeler1() {
         return allPersonagesSpeler1;
     }
 
+    /**
+     * Getter voor de Personages (een List<Personage>).
+     * Deze wordt gebruikt voor speler 2
+     * @return allPersonagesSpeler2
+     * @author LeventHAN
+     */
     public Personages getAllPersonagesSpeler2() {
         return allPersonagesSpeler2;
     }
 
-
-
-    public int getSizePersonages() {
+    /**
+     * Getter voor de aantal personages/karakters (een getSize() methode van List<Personage>).
+     * Deze wordt gebruikt voor speler 1
+     * @return allPersonagesSpeler1.getSize()
+     * @author LeventHAN
+     */
+    public int getSizePersonages1() {
         return allPersonagesSpeler1.getSize();
     }
 
-
-    public void setPersonageSpeler(String personageNaam) {
-        for (int i = 0; i < getSizePersonages(); i++) {
-            if (allPersonagesSpeler1.getPersonage(i).getNaam().equals(personageNaam)){
-                gekozenPersoonSpeler = allPersonagesSpeler1.getPersonage(i);
-                System.out.println(gekozenPersoonSpeler);
-            };
-
-        }
+    /**
+     * Getter voor de aantal personages/karakters (een getSize() methode van List<Personage>).
+     * Deze wordt gebruikt voor speler 2
+     * @return allPersonagesSpeler2.getSize()
+     * @author LeventHAN
+     */
+    public int getSizePersonages2() {
+        return allPersonagesSpeler2.getSize();
     }
 
+    /**
+     * Setter voor gekozen Personage.
+     * Deze wordt gebruikt voor speler 1 en speler 2 (of de computer)
+     * moet deze personage proberen te vinden/gokken.
+     * @param personage Een Personage object.
+     * @author LeventHAN
+     */
+    public void setGekozenPersoonSpeler1(Personage personage) {
+        this.gekozenPersoonSpeler1 = personage;
+    }
+
+    /**
+     * Setter voor gekozen Personage.
+     * Deze wordt gebruikt voor speler 2 en speler 1
+     * moet deze personage proberen te vinden/gokken.
+     * De computer gebruikt automatisch deze.
+     * @param personage Een Personage object.
+     * @author LeventHAN
+     */
+    public void setGekozenPersoonSpeler2(Personage personage) {
+        this.gekozenPersoonSpeler2 = personage;
+    }
+
+    /**
+     * Getter voor de gekozen personages/karakters (een Personage object).
+     * Deze wordt gebruikt voor speler 1
+     * @return gekozenPersoonSpeler1 Een Personage Object
+     * @author LeventHAN
+     */
+    public Personage getGekozenPersoonSpeler1() {
+        return gekozenPersoonSpeler1;
+    }
+
+    /**
+     * Getter voor de gekozen personages/karakters (een Personage object).
+     * Deze wordt gebruikt voor speler 2
+     * @return gekozenPersoonSpeler1 Een Personage Object
+     * @author LeventHAN
+     */
+    public Personage getGekozenPersoonSpeler2() {
+        return gekozenPersoonSpeler2;
+    }
+
+    /**
+     * Setter voor speler 1, Speler object.
+     * Deze wordt gebruikt voor speler 1.
+     * @param spelerNaam Een String
+     * @param score Een Integer
+     * @author LeventHAN
+     */
     public void setSpeler1(String spelerNaam, int score){
         speler1.setNaam(spelerNaam);
         speler1.setScore(score);
     }
 
+    /**
+     * Setter voor speler 2, Speler object.
+     * Deze wordt gebruikt voor speler 2.
+     * @param spelerNaam Een String
+     * @param score Een Integer
+     * @author LeventHAN
+     */
     public void setSpeler2(String spelerNaam, int score){
         speler2.setNaam(spelerNaam);
         speler2.setScore(score);
     }
 
+    /**
+     * Getter voor de turn waarde (om te weten wanneer het aan speler 1 is).
+     * Deze wordt gebruikt voor te bepalen wanneer de tweede speler moet en of vs
+     * @author LeventHAN
+     */
     public boolean isTurnSpeler1() {
         return turnSpeler1;
     }
 
+    /**
+     * Setter voor de turn waarde (om te weten wanneer het aan speler 1 is).
+     * Deze wordt gebruikt voor te bepalen wanneer de tweede speler moet en of vs
+     * @param turnSpeler1 Een boolean
+     * @author LeventHAN
+     */
     public void setTurnSpeler1(boolean turnSpeler1) {
         this.turnSpeler1 = turnSpeler1;
     }
+
 
 
 

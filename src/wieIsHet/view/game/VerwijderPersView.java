@@ -26,7 +26,6 @@ public class VerwijderPersView extends GridPane {
     private void initialiseNodes() {
         // attributen initialiseren
         model.getAllPersonagesSpeler1().getPersonages().forEach(personage -> {
-            System.out.println(personage.getNaam());
             persoonNaam = personage.getNaam();
             String loc = "/images/personages/"+persoonNaam+".png";
             Knop knopje = new Knop(80,80,loc,persoonNaam);

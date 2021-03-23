@@ -15,10 +15,8 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ButtonsView extends VBox {
+public class ButtonsView extends HBox {
 
-    // private Node attributen (controls)
-    Image achtergrond;
     List<Button> btnsStartScherm = new ArrayList<>();
 
     // private Node attributen (controls)
@@ -32,10 +30,10 @@ public class ButtonsView extends VBox {
         // bvb.:
         // button = new Button("...")
         // label = new Label("...")
-        Knop btnStartPvP = new Knop(20,20,"images/buttons/pvp.png","Start PvP");
-        Knop btnStartPvC = new Knop(20,20,"images/buttons/pvc.png","Start PvC");
-        Knop btnStartAbout = new Knop(20,20,"images/buttons/pvp.png","About Us");
-        Knop btnExit = new Knop(20,20,"images/buttons/pvp.png","Exit");
+        Knop btnStartPvP = new Knop(40,60,"images/buttons/pvp.png","Start PvP");
+        Knop btnStartPvC = new Knop(40,60,"images/buttons/pvc.png","Start PvC");
+        Knop btnStartAbout = new Knop(40,60,"images/buttons/pvp.png","About Us");
+        Knop btnExit = new Knop(40,60,"images/buttons/pvp.png","Exit");
 
 
 
@@ -46,7 +44,11 @@ public class ButtonsView extends VBox {
 
         btnsStartScherm.forEach(button -> {
             button.setContentDisplay(ContentDisplay.TOP);
-            button.setStyle("-fx-font-size:12; -fx-font-weight: 900;");
+            button.setStyle("" +
+                    "-fx-font-size:12; " +
+                    "-fx-font-weight: 900;" +
+                    "-fx-border-color: #cbb501;" +
+                    "-fx-background-color: rgb(252,234,81);");
         });
 
 
