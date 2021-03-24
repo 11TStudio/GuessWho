@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import wieIsHet.view.game.VerwijderPersView;
 
 
 public class StartView extends BorderPane {
@@ -24,6 +25,7 @@ public class StartView extends BorderPane {
         this.initialiseNodes();
         this.layoutNodes();
     }
+
 
     private void initialiseNodes() {
         // Initialisatie van de Nodes

@@ -71,7 +71,8 @@ public class Personage  {
     }
 
     public void setInActive(boolean status) {
-        this.isActive = "NEE";
+        if(status) { isActive = "NEE"; return;}
+        isActive = "JA";
     }
 
     @Override

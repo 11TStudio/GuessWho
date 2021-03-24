@@ -6,17 +6,17 @@ package wieIsHet.model;
  * kunnen aanmaken. De MainModel klasse beheert de settings.
  */
 public class Settings {
-    private boolean autoKiesPersonage = false;
+    private boolean autoPickEnable = false;
 
     // making constructor package private, so presenters cant access it
     Settings() {
     }
 
-    public boolean isAutoKiesPersonage() {
-        return autoKiesPersonage;
+    public void setAutoPickEnable(boolean autoPickEnable) {
+        this.autoPickEnable = autoPickEnable;
     }
 
-    public void setAutoKiesPersonage(boolean autoKiesPersonage) {
-        this.autoKiesPersonage = autoKiesPersonage;
+    public boolean isCbAutoPickEnable() {
+        return autoPickEnable;
     }
 }

@@ -1,5 +1,7 @@
 package wieIsHet.model;
 
+import wieIsHet.Log;
+
 import java.io.*;
 import java.util.*;
 import java.util.stream.DoubleStream;
@@ -21,12 +23,15 @@ public class Personages {
         return personages;
     }
 
-    public Personage getPersonage(int i) {
-        return personages.get(i);
-    }
-
     public int getSize() {
         return personages.size();
+    }
+
+    public int getDeletedSize() {
+        int counter;
+        counter= (int) personages.stream().filter(personage -> personage.isActive().equals("JA")).count();
+        Log.debug("Counter van disabled persoanges staat op: "+counter);
+        return counter;
     }
 
 
@@ -74,6 +79,9 @@ public class Personages {
         personages.remove(pers);
     }
 
+    public Personage getPersonageByIndex(int index) {
+        return personages.get(index);
+    }
 
     // Sorteerfunctie op String naam.
     public void sorteerGeslachtNaam() {

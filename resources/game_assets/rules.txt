@@ -1,9 +1,14 @@
-The computer picks a sequence of colors.The objective of the game is to guess the exact positions of the colors in the computer's sequence. After filling a line with your guesses and clicking on the 'Check' button, the computer responses with the result of your guess:
+Dit bordspelletje zoek uit wie je in gedachten hebt?
 
-- For each color in your guess that is in the correct color and correct position in the code sequence, the computer display a small white color on the right side of the current guess.
+Aan de hand van vragen moet je te weten komen wie de tegenstander in gedacht heeft.
+In dit spelletje is strategie van groot belang. Het is leuk voor jong en oud.
 
-- For each color in your guess that is in the correct color but is NOT in the correct position in the code sequence, the computer display a small black color on the right side of the current guess.
+Detail:
+Dit spel wordt gespeeld tegen de computer.
+Er zijn 20 personen in het spel met verschillende eigenschappenzoals kleur ogen, kleur haar, geslacht,....
+De speler en de computer zien dezelfde personen, deze hebben allemaal een uniek naam.
+Adhv vragen kan je mensen “elimineren” om zo het snelste de te zoeken persoon te vinden.
 
-You win the game when you manage to guess all the colors in the code sequence and when they all in the right position.
+In het begin van het spel mag je zelf een persoon kiezen die de computer moet vinden.
 
-You lose the game if you use all attempts without guessing the computer code sequence.
+De speler mag als eerste een vraag stellen. Deze vraag komt uit een vastgelegde lijst.

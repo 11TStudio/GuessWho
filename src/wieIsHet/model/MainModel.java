@@ -2,6 +2,7 @@ package wieIsHet.model;
 
 import wieIsHet.Log;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -21,23 +22,31 @@ public class MainModel {
     private Personage gekozenPersoonSpeler2 = null;
     private Personages allPersonagesSpeler1 = new Personages();
     private Personages allPersonagesSpeler2 = new Personages();
+    private Vragen alleVragenSpeler1 = new Vragen();
+    private Vragen alleVragenSpeler2 = new Vragen();
     private Speler speler1 = new Speler();
     private Speler speler2 = new Speler();
     private boolean foundIt;
     private boolean isPVP = false;
     private boolean turnSpeler1 = true;
 
+    private Settings settings;
 
+    public MainModel() {
+        settings = new Settings();
+        restart();
+    }
     /**
      * Herstart het spel. De settings blijven behouden. Een nieuwe opgave wordt gegenereerd.
      */
     public void restart() {
-        Log.debug("Spel is opnieuw gestard.");
         foundIt = false;
         gekozenPersoonSpeler1 = null;
         gekozenPersoonSpeler2 = null;
         allPersonagesSpeler1 = new Personages();
         allPersonagesSpeler2 = new Personages();
+        alleVragenSpeler1 = new Vragen();
+        alleVragenSpeler2 = new Vragen();
         speler1 = new Speler();
         speler2 = new Speler();
         turnSpeler1 = true;
@@ -71,6 +80,26 @@ public class MainModel {
      */
     public Personages getAllPersonagesSpeler1() {
         return allPersonagesSpeler1;
+    }
+
+    /**
+     * Getter voor de Vragen (een List<Vraag>).
+     * Deze wordt gebruikt voor speler 1
+     * @return alleVragenSpeler1
+     * @author LeventHAN
+     */
+    public Vragen getAlleVragenSpeler1() {
+        return alleVragenSpeler1;
+    }
+
+    /**
+     * Getter voor de Vragen (een List<Vraag>).
+     * Deze wordt gebruikt voor speler 2
+     * @return alleVragenSpeler2
+     * @author LeventHAN
+     */
+    public Vragen getAlleVragenSpeler2() {
+        return alleVragenSpeler2;
     }
 
     /**
@@ -190,8 +219,75 @@ public class MainModel {
     }
 
 
+    public Settings getSettings() {
+        return settings;
+    }
 
 
+    /**
+     * Bewaar het spel naar een binair bestand om later verder te kunnen spelen
+     * @throws WieIsHetException als het bewaren mislukt (IO probleem)
+     */
+    public void saveGame() throws WieIsHetException {
+        WieIsHetSaver saver = new WieIsHetSaver(this);
+        try {
+            saver.save();
+        } catch (IOException e) {
+            Log.error(e.getMessage()); // TODO: save to logfile
+            throw new WieIsHetException(e);
+        }
+    }
+
+    /**
+     * Laad het spel van een bestand.
+     * @throws WieIsHetException als het bestand niet gevonden wordt.
+     */
+    public void loadGame() throws WieIsHetException {
+        WieIsHetSaver saver = new WieIsHetSaver(this);
+        try {
+            saver.load();
+        } catch (IOException e) {
+            Log.error(e.getMessage());//you could save to logfile
+            throw new WieIsHetException(e);
+        }
+    }
+
+    /**
+     * Als de personage gevonden is of het aantal personages te verwijderen leeg is.
+     * @return
+     */
+    public boolean gameFinished() {
+        return foundIt || getAllPersonagesSpeler1().getDeletedSize()==0;
+    }
+
+    /**
+     * Als het aantal personages te verwijderen leeg is en de personage niet gevonden
+     * @return
+     */
+    public boolean playerLost(){
+        Log.debug("Call to model.playerLost() "+(getAllPersonagesSpeler1().getDeletedSize()==0) + " !foundIt: "+!foundIt);
+        return !foundIt&&getAllPersonagesSpeler1().getDeletedSize()==0;
+    }
+
+    /**
+     * Getter voor de aantal personages/karakters dat al reeds verwijderd zijn.
+     * Deze wordt gebruikt voor speler 1
+     * @return allPersonagesSpeler1.getSize()
+     * @author LeventHAN
+     */
+    public int getSizeDeletedPersonagesSpeler1() {
+        return allPersonagesSpeler1.getDeletedSize();
+    }
+
+    /**
+     * Getter voor de aantal personages/karakters dat al reeds verwijderd zijn.
+     * Deze wordt gebruikt voor speler 2 of computer
+     * @return allPersonagesSpeler1.getSize()
+     * @author LeventHAN
+     */
+    public int getSizeDeletedPersonagesSpeler2() {
+        return allPersonagesSpeler2.getDeletedSize();
+    }
 
     //    public static void main(String[] args) {
     // TODO: Maak hier een getAantalpersonages()
@@ -205,42 +301,42 @@ public class MainModel {
     // implementatie van de nodige Getters
     // implementatie van de nodige Setters
 
-    String baard;
-    String bril;
-    String hoofddeksel;
-    String snor;
-    String kaal;
-
-    boolean rondeComputer = false;
-
-    String fixGeslacht = "";
-
-
-    int lengteBeschikbaarPersonen = 0;
-
-    boolean checkNaam = true;
-
-    ArrayList<String> deletedPersonagesSpeler = new ArrayList<>();
-    ArrayList<String> deletedPersonagesSpelerComputer = new ArrayList<>();
-
-    boolean laatstePersoon = false;
-
-    Personage gekozenPersonageObj = null;
-    Personage gekozenCompPersonageObj = null;
-
-    boolean spelActief = true;
-
-    int aantalAskedQuestionSpeler = 0;
-    int aantalAskedQuestionComputer = 0;
-
-    int gekozenVraagSpeler = 0;
-    int gekozenVraagComputer = 0;
-
-    String gekozenPersonage = "";
-    String gekozenPersonageComp = "";
-
-    ArrayList<String> gevraagdeVragenSpeler = new ArrayList<>();
-    ArrayList<String> gevraagdeVragenComputer = new ArrayList<>();
+//    String baard;
+//    String bril;
+//    String hoofddeksel;
+//    String snor;
+//    String kaal;
+//
+//    boolean rondeComputer = false;
+//
+//    String fixGeslacht = "";
+//
+//
+//    int lengteBeschikbaarPersonen = 0;
+//
+//    boolean checkNaam = true;
+//
+//    ArrayList<String> deletedPersonagesSpeler = new ArrayList<>();
+//    ArrayList<String> deletedPersonagesSpelerComputer = new ArrayList<>();
+//
+//    boolean laatstePersoon = false;
+//
+//    Personage gekozenPersonageObj = null;
+//    Personage gekozenCompPersonageObj = null;
+//
+//    boolean spelActief = true;
+//
+//    int aantalAskedQuestionSpeler = 0;
+//    int aantalAskedQuestionComputer = 0;
+//
+//    int gekozenVraagSpeler = 0;
+//    int gekozenVraagComputer = 0;
+//
+//    String gekozenPersonage = "";
+//    String gekozenPersonageComp = "";
+//
+//    ArrayList<String> gevraagdeVragenSpeler = new ArrayList<>();
+//    ArrayList<String> gevraagdeVragenComputer = new ArrayList<>();
 
 
 //    ArrayList<String> vragenSpeler = new ArrayList<>();
@@ -1175,4 +1271,5 @@ public class MainModel {
         }
         return true;
     }
+
 }

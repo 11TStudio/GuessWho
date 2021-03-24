@@ -1,13 +1,13 @@
-package wieIsHet.view.about;
+package wieIsHet.view.help;
 
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 
-public class AboutView extends BorderPane {
+public class HelpView extends BorderPane {
     private TextArea taRules;
 
-    public AboutView() {
+    public HelpView() {
         initialiseNodes ();
         layoutNodes();
     }

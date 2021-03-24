@@ -2,10 +2,12 @@ package wieIsHet.view.kies;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import wieIsHet.Log;
 import wieIsHet.model.MainModel;
 import wieIsHet.view.game.GamePresenter;
 import wieIsHet.view.game.GameView;
-import wieIsHet.view.game.RightSidebarView;
+
+import java.util.Random;
 
 public class KiesPersPresenter {
     MainModel model;
@@ -29,6 +31,9 @@ public class KiesPersPresenter {
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
+                    Random random = new Random();
+                    model.setGekozenPersoonSpeler2(model.getAllPersonagesSpeler2().getPersonageByIndex(random.nextInt(model.getSizePersonages2())));
+
                     model.getAllPersonagesSpeler1().getPersonages().forEach(personage -> {
                         if(button.getText().equals(personage.getNaam())) {
                             model.setGekozenPersoonSpeler1(personage);
@@ -40,6 +45,8 @@ public class KiesPersPresenter {
                             gameView.getScene().getWindow().setHeight(650);
                         }
                     });
+                    Log.debug("Personage van Speler 1 is "+model.getGekozenPersoonSpeler1());
+                    Log.debug("Personage van Speler 2 is "+model.getGekozenPersoonSpeler2());
                 }
             });
         });

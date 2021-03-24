@@ -1,12 +1,12 @@
-Is het een vrouw?
-Draagt de persoon een bril?
-Heeft hij een snor?
-Heeft je persoon iets op zijn hoofd?
-Is je persoon kaal?
-Heeft je persoon blond haar?
-Heeft je persoon zwart haar?
-Heeft je persoon bruin haar?
-Heeft hij een baard?
-Heeft je persoon blauwe ogen?
-Heeft je persoon bruine ogen?
-Heeft je persoon grijze ogen?
+Is het een vrouw?;false
+Draagt de persoon een bril?;false
+Heeft hij een snor?;false
+Heeft je persoon iets op zijn hoofd?;false
+Is je persoon kaal?;false
+Heeft je persoon blond haar?;false
+Heeft je persoon zwart haar?;false
+Heeft je persoon bruin haar?;false
+Heeft hij een baard?;false
+Heeft je persoon blauwe ogen?;false
+Heeft je persoon bruine ogen?;false
+Heeft je persoon grijze ogen?;false

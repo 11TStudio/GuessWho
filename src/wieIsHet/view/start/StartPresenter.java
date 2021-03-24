@@ -2,6 +2,7 @@ package wieIsHet.view.start;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import wieIsHet.Log;
 import wieIsHet.model.MainModel;
 import wieIsHet.view.kies.KiesPersPresenter;
 import wieIsHet.view.kies.KiesView;
@@ -9,7 +10,7 @@ import wieIsHet.view.kies.KiesView;
 public class StartPresenter {
     final MainModel model;
     final StartView startView;
-    KiesView kiesView;
+    boolean splashOn = true;
 
     public StartPresenter(
             MainModel model,
@@ -19,6 +20,7 @@ public class StartPresenter {
             this.startView = startView;
             this.addEventHandlers();
             this.updateView();
+
     }
 
     private void addEventHandlers() {
@@ -71,11 +73,18 @@ public class StartPresenter {
 
     private void updateView() {
         // Vult de view met data uit model
+        // splash-screen
+
+
     }
 
     public void addWindowEventHandlers () {
         // Window event handlers (anon. inner klassen)
         // Koppeling via view.getScene().getWindow()
+    }
+
+    private void splashScreen() {
+        splashOn = false;
     }
 
 }

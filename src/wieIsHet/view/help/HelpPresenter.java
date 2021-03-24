@@ -1,12 +1,11 @@
-package wieIsHet.view.about;
+package wieIsHet.view.help;
 
 import javafx.scene.control.Alert;
-import wieIsHet.model.MainModel;
 import wieIsHet.model.Rules;
 import wieIsHet.model.WieIsHetException;
 
-public class AboutPresenter {
-    public AboutPresenter(MainModel model, AboutView view) {
+public class HelpPresenter {
+    public HelpPresenter(HelpView view) {
         try {
             view.getTaRules().setText(new Rules().getRules());
         } catch (WieIsHetException me) {
