@@ -7,13 +7,18 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
-
+/**
+ * De view dat bij de start scherm getoond wordt.
+ * De buttonsview wordt hier in toegevoegd.
+ *
+ * @author LeventHAN
+ */
 public class StartView extends BorderPane {
 
     // private Node attributen (controls)
     ButtonsView buttonsView;
-    Image backGround;
-    Image logo;
+    Image imgBackGround;
+    Image imgLogo;
     ImageView imageView;
     MenuItem miExit;
     MenuItem miRestart;
@@ -36,9 +41,9 @@ public class StartView extends BorderPane {
         // bvb.:
         // button = new Button("...")
         // label = new Label("...")
-        backGround = new Image("images/backgrounds/bg.png");
-        logo = new Image("images/logo/logo.png");
-        imageView = new ImageView(logo);
+        imgBackGround = new Image("images/backgrounds/bg.png");
+        imgLogo = new Image("images/logo/logo.png");
+        imageView = new ImageView(imgLogo);
         //menu
         miExit = new MenuItem("Exit");
         miAbout = new MenuItem("About");
@@ -54,19 +59,19 @@ public class StartView extends BorderPane {
         // Layout van de Nodes
         // add… methodes (of set…)
         // Insets, padding, alignment, …
-        Menu menuGame = new Menu("Game",null,miSettings, miSave, miLoad, new SeparatorMenuItem(),miRestart,miExit);
-        Menu menuHelp = new Menu("Help",null, miRules,miAbout);
-        MenuBar menuBar = new MenuBar(menuGame,menuHelp);
+        Menu menuGame = new Menu("Game", null, miSettings, miSave, miLoad, new SeparatorMenuItem(), miRestart, miExit);
+        Menu menuHelp = new Menu("Help", null, miRules, miAbout);
+        MenuBar menuBar = new MenuBar(menuGame, menuHelp);
         setTop(menuBar);
         setCenter(imageView);
         setBottom(buttonsView);
         setAlignment(imageView, Pos.CENTER);
         setAlignment(buttonsView, Pos.TOP_CENTER);
-        setMargin(buttonsView, new Insets(0,0,20,0));
+        setMargin(buttonsView, new Insets(0, 0, 20, 0));
 
         // setMargin(buttonsView, new Insets(20,0,0,0));
 
-        setBackground(new Background(new BackgroundImage(backGround,
+        setBackground(new Background(new BackgroundImage(imgBackGround,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER,

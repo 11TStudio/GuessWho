@@ -5,12 +5,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.layout.*;
 import wieIsHet.view.game.Knop;
+
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Deze view houdt alle buttons van de startscherm.
+ *
+ * @author LeventHAN
+ */
 public class ButtonsView extends HBox {
 
-    List<Button> btnsStartScherm = new ArrayList<>();
+    List<Button> listStartSchermButtons = new ArrayList<>();
 
     // private Node attributen (controls)
     public ButtonsView() {
@@ -23,19 +29,18 @@ public class ButtonsView extends HBox {
         // bvb.:
         // button = new Button("...")
         // label = new Label("...")
-        Knop btnStartPvP = new Knop(40,60,"images/buttons/pvp.png","Start PvP");
-        Knop btnStartPvC = new Knop(40,60,"images/buttons/pvc.png","Start PvC");
-        Knop btnStartAbout = new Knop(40,60,"images/buttons/pvp.png","About Us");
-        Knop btnExit = new Knop(40,60,"images/buttons/pvp.png","Exit");
+        Knop btnStartPvP = new Knop(40, 60, "images/buttons/pvp.png", "Start PvP");
+        Knop btnStartPvC = new Knop(40, 60, "images/buttons/pvc.png", "Start PvC");
+        Knop btnStartAbout = new Knop(40, 60, "images/buttons/pvp.png", "About Us");
+        Knop btnExit = new Knop(40, 60, "images/buttons/pvp.png", "Exit");
 
 
+        listStartSchermButtons.add(btnStartPvP);
+        listStartSchermButtons.add(btnStartPvC);
+        listStartSchermButtons.add(btnStartAbout);
+        listStartSchermButtons.add(btnExit);
 
-        btnsStartScherm.add(btnStartPvP);
-        btnsStartScherm.add(btnStartPvC);
-        btnsStartScherm.add(btnStartAbout);
-        btnsStartScherm.add(btnExit);
-
-        btnsStartScherm.forEach(button -> {
+        listStartSchermButtons.forEach(button -> {
             button.setContentDisplay(ContentDisplay.TOP);
             button.setStyle("" +
                     "-fx-font-size:12; " +
@@ -43,7 +48,6 @@ public class ButtonsView extends HBox {
                     "-fx-border-color: #cbb501;" +
                     "-fx-background-color: rgb(252,234,81);");
         });
-
 
 
     }
@@ -54,12 +58,12 @@ public class ButtonsView extends HBox {
         // Insets, padding, alignment, …
         this.setSpacing(8);
         this.setAlignment(Pos.CENTER);
-        this.getChildren().addAll(btnsStartScherm);
+        this.getChildren().addAll(listStartSchermButtons);
     }
 
     // implementatie van de nodige
     // package-private Getters
-    public List<Button> getBtnsStartScherm() {
-        return btnsStartScherm;
+    public List<Button> getListStartSchermButtons() {
+        return listStartSchermButtons;
     }
 }

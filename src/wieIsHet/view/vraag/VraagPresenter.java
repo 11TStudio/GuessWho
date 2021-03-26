@@ -7,8 +7,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ContentDisplay;
 import javafx.stage.WindowEvent;
 import wieIsHet.model.MainModel;
-import wieIsHet.view.game.GamePresenter;
-import wieIsHet.view.game.GameView;
 import wieIsHet.view.game.Knop;
 import wieIsHet.view.gok.GokPresenter;
 import wieIsHet.view.gok.GokView;
@@ -18,7 +16,7 @@ import wieIsHet.view.wissel.WisselView;
 public class VraagPresenter {
     MainModel model;
     VraagView vraagView;
-    boolean set=false;
+    boolean set = false;
 
     public VraagPresenter(MainModel model, VraagView vraagView) {
 
@@ -27,7 +25,6 @@ public class VraagPresenter {
 
         this.addEventHandlers();
         this.updateView();
-
 
 
     }
@@ -39,7 +36,7 @@ public class VraagPresenter {
         // Event handlers: roepen methodes aan uit het
         // model en zorgen voor een update van de view.
 
-        vraagView.getPersonagesButtons().forEach(button -> {
+        vraagView.getListPersonagesButtons().forEach(button -> {
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
@@ -92,6 +89,7 @@ public class VraagPresenter {
                 if (alert.getResult().equals(no)) {
                     event.consume();
                 }
+                // IN V2!!
 //                else if (alert.getResult().equals(yes)) {
 //                    try {
 //                        model.saveGame();
@@ -108,22 +106,22 @@ public class VraagPresenter {
 
     private void putButtons() {
 
-        if(!set){
+        if (!set) {
             String loc = "/images/answers/endTurn.png";
-            Knop knopje = new Knop(120,120,loc,"Eindig Ronde");
+            Knop knopje = new Knop(120, 120, loc, "Eindig Ronde");
             knopje.setContentDisplay(ContentDisplay.TOP);
-            vraagView.getPersonagesButtons().add(knopje);
+            vraagView.getListPersonagesButtons().add(knopje);
             vraagView.add(knopje, 0, 5, 5, 5);
 
 
             loc = "/images/answers/guess.png";
-            knopje = new Knop(120,120,loc,"Gok!");
+            knopje = new Knop(120, 120, loc, "Gok!");
             knopje.setContentDisplay(ContentDisplay.TOP);
-            vraagView.getPersonagesButtons().add(knopje);
+            vraagView.getListPersonagesButtons().add(knopje);
             vraagView.add(knopje, 5, 5, 5, 5);
 
             addEventHandlers();
-            set=true;
+            set = true;
         }
 
 

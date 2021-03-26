@@ -24,7 +24,7 @@ public class VerwijderPersPresenter {
     VerwijderPersView verwijderPersView;
     int row = 0;
     int col = 0;
-    boolean set=false;
+    boolean set = false;
 
     public VerwijderPersPresenter(MainModel model, VerwijderPersView verwijderPersView) {
 
@@ -33,7 +33,6 @@ public class VerwijderPersPresenter {
 
         this.addEventHandlers();
         this.updateView();
-
 
 
     }
@@ -47,7 +46,7 @@ public class VerwijderPersPresenter {
         verwijderPersView.getBtnGaVerder().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                if(model.getAllPersonagesSpeler1().getAantalOvergeblevenActivePersonages()==0) {
+                if (model.getAllPersonagesSpeler1().getAantalOvergeblevenActivePersonages() == 0) {
                     showFinishedDialog();
                 } else {
                     VraagView vraagView = new VraagView();
@@ -65,9 +64,9 @@ public class VerwijderPersPresenter {
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
-                    if(model.isTurnSpeler1()) {
+                    if (model.isTurnSpeler1()) {
                         model.getAllPersonagesSpeler1().getPersonages().forEach(personage -> {
-                            if(button.getText().equals(personage.getNaam())) {
+                            if (button.getText().equals(personage.getNaam())) {
                                 personage.setActive(false);
                                 button.setDisable(true);
                                 updateView();
@@ -75,7 +74,7 @@ public class VerwijderPersPresenter {
                         });
                     } else {
                         model.getAllPersonagesSpeler2().getPersonages().forEach(personage -> {
-                            if(button.getText().equals(personage.getNaam())) {
+                            if (button.getText().equals(personage.getNaam())) {
                                 personage.setActive(false);
                                 button.setDisable(true);
                                 updateView();
@@ -94,7 +93,7 @@ public class VerwijderPersPresenter {
 
     }
 
-    public void addWindowEventHandlers () {
+    public void addWindowEventHandlers() {
         // Window event handlers (anon. inner klassen)
         // Koppeling via view.getScene().getWindow()
         verwijderPersView.getScene().getWindow().setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -112,6 +111,7 @@ public class VerwijderPersPresenter {
                 if (alert.getResult().equals(no)) {
                     event.consume();
                 }
+                // IN V2!!
 //                else if (alert.getResult().equals(yes)) {
 //                    try {
 //                        model.saveGame();
@@ -128,30 +128,30 @@ public class VerwijderPersPresenter {
 
     private void updatePersonages() {
 
-        if(!set){
+        if (!set) {
             model.getAllPersonagesSpeler1().getPersonages().forEach(personage -> {
-                if(!personage.isActive()) return;
+                if (!personage.isActive()) return;
 
                 String persoonNaam;
 
                 persoonNaam = personage.getNaam();
-                String loc = "/images/personages/"+persoonNaam+".png";
-                Knop knopje = new Knop(80,80,loc,persoonNaam);
+                String loc = "/images/personages/" + persoonNaam + ".png";
+                Knop knopje = new Knop(80, 80, loc, persoonNaam);
                 GridPane.setHgrow(knopje, Priority.ALWAYS);
                 GridPane.setHgrow(knopje, Priority.ALWAYS);
                 // So we can add eventhandlers to all the buttons :P
                 knopje.setContentDisplay(ContentDisplay.TOP);
                 verwijderPersView.getPersonagesButtons().add(knopje);
-                if(row%5==0) {
+                if (row % 5 == 0) {
                     col++;
-                    row=0;
+                    row = 0;
                 }
                 verwijderPersView.add(knopje, row, col);
                 row++;
 
             });
             addEventHandlers();
-            set=true;
+            set = true;
         }
 
 
@@ -163,8 +163,8 @@ public class VerwijderPersPresenter {
         ChoiceDialog<String> again = new ChoiceDialog<String>("Ok", "Ok", "Nope");
         if (model.playerLost()) {
             again.setTitle("You Lost!");
-            again.setHeaderText("U hebt verloren! De personage was: "+model.getGekozenPersoonSpeler2().getNaam());
-            again.setGraphic(new ImageView("/images/personages/"+model.getGekozenPersoonSpeler2().getNaam()+".png"));
+            again.setHeaderText("U hebt verloren! De personage was: " + model.getGekozenPersoonSpeler2().getNaam());
+            again.setGraphic(new ImageView("/images/personages/" + model.getGekozenPersoonSpeler2().getNaam() + ".png"));
         } else {
             again.setTitle("You Won!");
             again.setGraphic(new ImageView("/images/answers/won.png"));

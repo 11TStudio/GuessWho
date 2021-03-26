@@ -9,9 +9,15 @@ import wieIsHet.model.MainModel;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Deze view toont de vraag of de personage zijn ronde wilt stoppen of wilt gokken.
+ *
+ * @author LeventHAN
+ */
 public class VraagView extends GridPane {
     MainModel model;
-    List<Button> personagesButtons = new ArrayList<>();
+    List<Button> listPersonagesButtons = new ArrayList<>();
     Label lblTitel;
     Label lblDescriptionText;
 
@@ -37,7 +43,7 @@ public class VraagView extends GridPane {
         this.setPadding(new Insets(15, 15, 10, 15));
     }
 
-    public List<Button> getPersonagesButtons() {
-        return personagesButtons;
+    public List<Button> getListPersonagesButtons() {
+        return listPersonagesButtons;
     }
 }

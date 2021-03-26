@@ -8,6 +8,8 @@ import java.io.InputStreamReader;
 
 /**
  * Deze klasse laad de spelregels vanuit een tekstbestand in de rootfolder van het project
+ *
+ * @author LeventHAN
  */
 public class Rules {
     public static final String RULES_FILE = "game_assets/rules.txt";
@@ -28,6 +30,11 @@ public class Rules {
         }
     }
 
+    /**
+     * Getter voor de rules
+     *
+     * @return String met alle rules.
+     */
     public String getRules(){
         return rules;
     }

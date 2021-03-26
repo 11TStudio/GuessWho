@@ -24,14 +24,14 @@ import wieIsHet.view.settings.SettingsPresenter;
 import wieIsHet.view.settings.SettingsView;
 
 public class StartPresenter {
-    final MainModel model;
-    final StartView startView;
+    private MainModel model;
+    private StartView startView;
     boolean splashOn = true;
 
     public StartPresenter(
-        MainModel model,
-        StartView startView
-                                ) {
+            MainModel model,
+            StartView startView
+    ) {
         this.model = model;
         this.startView = startView;
         this.addEventHandlers();
@@ -45,14 +45,15 @@ public class StartPresenter {
         // Event handlers: roepen methodes aan uit het
         // model en zorgen voor een update van de view.
         addMenuEventHandlers();
-        startView.getButtonsView().getBtnsStartScherm().forEach(button -> {
+        startView.getButtonsView().getListStartSchermButtons().forEach(button -> {
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    switch(button.getText()) {
+                    switch (button.getText()) {
                         case "Start PvP":
                             // TODO: model.setPVP(true)
                             // TODO: Een systeem om de views te veranderen per click.
+                            // IN V2!!!
                             Log.debug("User clicked to Start PvP button.");
 //                            GameView gameView = new GameView();
 //                            GamePresenter gamePresenter = new GamePresenter(model, gameView);
@@ -202,7 +203,7 @@ public class StartPresenter {
 
     }
 
-    public void addWindowEventHandlers () {
+    public void addWindowEventHandlers() {
         // Window event handlers (anon. inner klassen)
         // Koppeling via view.getScene().getWindow()
         startView.getScene().getWindow().setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -220,6 +221,7 @@ public class StartPresenter {
                 if (alert.getResult().equals(no)) {
                     event.consume();
                 }
+                // IN V2!!
 //                else if (alert.getResult().equals(yes)) {
 //                    try {
 //                        model.saveGame();
@@ -234,9 +236,6 @@ public class StartPresenter {
         });
     }
 
-    private void splashScreen() {
-        splashOn = false;
-    }
 
 }
 

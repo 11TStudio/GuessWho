@@ -5,6 +5,11 @@ import wieIsHet.model.MainModel;
 import wieIsHet.model.About;
 import wieIsHet.model.WieIsHetException;
 
+/**
+ * De presenter voor de about
+ *
+ * @author LeventHAN
+ */
 public class AboutPresenter {
     public AboutPresenter(MainModel model, AboutView view) {
         try {

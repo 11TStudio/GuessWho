@@ -2,13 +2,15 @@ package wieIsHet.model;
 
 /**
  * Deze klasse verzamelt de verschillende settings voor het spel. Voor elke setting is een getter en een setter.
- * De constructor van deze klasse is bewust package private gehouden, zodat views of presenters geen extra settings objecten
- * kunnen aanmaken. De MainModel klasse beheert de settings.
+ * <p>
+ * In v2.0 zal er meerdere settings toegevoegd worden zoals soorteerfunctie, enz.
+ *
+ * @version 1.0
+ * @author LeventHAN
  */
 public class Settings {
     private boolean autoPickEnable = false;
 
-    // making constructor package private, so presenters cant access it
     Settings() {
     }
 

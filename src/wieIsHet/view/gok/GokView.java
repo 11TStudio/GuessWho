@@ -9,6 +9,11 @@ import wieIsHet.model.MainModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Deze view toont alle beschikbaare actieve personages dat speler heeft en maakt het mogelijk om te gokken.
+ *
+ * @author LeventHAN
+ */
 public class GokView extends GridPane {
     MainModel model;
     List<Button> personagesButtons = new ArrayList<>();
@@ -32,8 +37,8 @@ public class GokView extends GridPane {
     private void layoutNodes() {
 
         // this.setGridLinesVisible(true);
-        add(lblTitel, 0, (model.getSizePersonages1()/5)+1, 3, 1);
-        add(lblDescriptionText, 0, (model.getSizePersonages1()/5)+2, 3, 1);
+        add(lblTitel, 0, (model.getAllPersonagesSpeler1().getPersonages().size() / 5) + 1, 3, 1);
+        add(lblDescriptionText, 0, (model.getAllPersonagesSpeler1().getPersonages().size() / 5) + 2, 3, 1);
         this.setHgap(20);
         this.setVgap(15);
         this.setPadding(new Insets(15, 15, 10, 15));

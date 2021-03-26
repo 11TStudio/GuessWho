@@ -8,6 +8,9 @@ import java.io.InputStreamReader;
 
 /**
  * Deze klasse laad de about vanuit een tekstbestand in de rootfolder van het project
+ *
+ * @version 1.0
+ * @author LeventHAN
  */
 public class About {
     public static final String RULES_FILE = "game_assets/about.txt";
@@ -16,9 +19,9 @@ public class About {
 
     public About() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(
-                this.getClass().getResourceAsStream("/" + RULES_FILE)))){
+                this.getClass().getResourceAsStream("/" + RULES_FILE)))) {
             String line = "";
-            while ((line=reader.readLine())!=null){
+            while ((line = reader.readLine()) != null) {
                 about += line + "\n";
             }
         } catch (IOException e) {
@@ -28,7 +31,7 @@ public class About {
         }
     }
 
-    public String getAbout(){
+    public String getAbout() {
         return about;
     }
 }

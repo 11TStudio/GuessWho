@@ -9,9 +9,16 @@ import wieIsHet.model.MainModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Deze view tont de vraag aan de spelers dat ze willen vragen aan elkaar.
+ * In v1 is deze enkel bedoeld voor de computer zijn vraag tegen de speler,
+ * maar in V2 zal deze tussen de spelers ook gebruikt worden gebruikt worden.
+ *
+ * @author LeventHAN
+ */
 public class WisselView extends GridPane {
     MainModel model;
-    List<Button> personagesButtons = new ArrayList<>();
+    List<Button> listPersonagesButtons = new ArrayList<>();
     Label lblTitel;
     Label lblDescriptionText;
 
@@ -37,7 +44,7 @@ public class WisselView extends GridPane {
         this.setPadding(new Insets(15, 15, 10, 15));
     }
 
-    public List<Button> getPersonagesButtons() {
-        return personagesButtons;
+    public List<Button> getListPersonagesButtons() {
+        return listPersonagesButtons;
     }
 }

@@ -12,14 +12,19 @@ import wieIsHet.view.game.Knop;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Deze view laat de spelers een personage kiezen.
+ *
+ * @author LeventHAN
+ */
 public class KiesView extends GridPane {
     MainModel model;
-    List<Button> personagesButtons = new ArrayList<>();
+    List<Button> listPersonagesButtons = new ArrayList<>();
     int row = 0;
     int col = 0;
     String persoonNaam;
-    Label titel;
-    Label descriptionText;
+    Label lblTitel;
+    Label lblDescriptionText;
 
     public KiesView() {
         this.model = new MainModel();
@@ -28,23 +33,23 @@ public class KiesView extends GridPane {
     }
 
     private void initialiseNodes() {
-        titel = new Label("Kies een personage.");
-        titel.setStyle("-fx-font-weight: 900; -fx-font-size: 30px;");
-        descriptionText = new Label("Deze personage moet vervolgens geraden worden door de tegenstaander.");
-        descriptionText.setStyle("-fx-font-size: 15px; -fx-background-color: lightgreen;");
+        // geen css bestand gebruikt omdat ik elk label apart een style wil geven.
+        lblTitel = new Label("Kies een personage.");
+        lblTitel.setStyle("-fx-font-weight: 900; -fx-font-size: 30px;");
+        lblDescriptionText = new Label("Deze personage moet vervolgens geraden worden door de tegenstaander.");
+        lblDescriptionText.setStyle("-fx-font-size: 15px; -fx-background-color: lightgreen;");
         model.getAllPersonagesSpeler1().getPersonages().forEach(personage -> {
-            // System.out.println(personage.getNaam());
             persoonNaam = personage.getNaam();
-            String loc = "/images/personages/"+persoonNaam+".png";
-            Knop knopje = new Knop(80,80,loc,persoonNaam);
+            String loc = "/images/personages/" + persoonNaam + ".png";
+            Knop knopje = new Knop(80, 80, loc, persoonNaam);
             setHgrow(knopje, Priority.ALWAYS);
             setHgrow(knopje, Priority.ALWAYS);
             // So we can add eventhandlers to all the buttons :P
             knopje.setContentDisplay(ContentDisplay.TOP);
-            personagesButtons.add(knopje);
-            if(row%5==0) {
+            listPersonagesButtons.add(knopje);
+            if (row % 5 == 0) {
                 col++;
-                row=0;
+                row = 0;
             }
             // Ipv layoutNodes doe ik deze hier.
             add(knopje, row, col);
@@ -53,16 +58,16 @@ public class KiesView extends GridPane {
     }
 
     private void layoutNodes() {
-        add(titel, 0, (model.getSizePersonages1()/5)+1, 3, 2);
-        add(descriptionText, 0, (model.getSizePersonages1()/5)+2, 5, 5);
+        add(lblTitel, 0, (model.getAllPersonagesSpeler1().getPersonages().size() / 5) + 1, 3, 2);
+        add(lblDescriptionText, 0, (model.getAllPersonagesSpeler1().getPersonages().size() / 5) + 2, 5, 5);
         // this.setGridLinesVisible(false);
         setHgap(20);
         setVgap(15);
         setPadding(new Insets(15, 15, 10, 15));
     }
 
-    public List<Button> getPersonagesButtons() {
-        return personagesButtons;
+    public List<Button> getListPersonagesButtons() {
+        return listPersonagesButtons;
     }
 
 }

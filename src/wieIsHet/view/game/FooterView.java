@@ -6,12 +6,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.HBox;
 
+/**
+ * De view voor de footer
+ * Toont de vragen, ask it en gok buttons!
+ *
+ * @author LeventHAN
+ */
 public class FooterView extends HBox {
-    Button kiesVraag;
-    Button gok;
+    Button btnKiesVraag;
+    Button btnGok;
     ComboBox<String> cbVragen;
-    HBox footer;
-    ObservableList<String> vragen;
+    HBox hbFooter;
+    ObservableList<String> olVragen;
 
     public FooterView() {
         this.initialiseNodes();
@@ -19,43 +25,52 @@ public class FooterView extends HBox {
     }
 
     private void initialiseNodes() {
-        footer = new HBox(20);
+        hbFooter = new HBox(20);
 
-        cbVragen= new ComboBox<>();
-        vragen = FXCollections.observableArrayList();
+        cbVragen = new ComboBox<>();
+        olVragen = FXCollections.observableArrayList();
 
-        // this.setMargin(this.cbVragen, new Insets(15));
-        kiesVraag = new Button("ASK IT!");
-        gok = new Button("Gok!");
-
+        btnKiesVraag = new Button("ASK IT!");
+        btnGok = new Button("Gok!");
 
 
-
-
-        // TODO score
-
-
-
-        // HBox.setMargin(kiesVraag, new Insets(10, 10, 10, 10));
+        // TODO score in v2
     }
 
     private void layoutNodes() {
 
-        cbVragen.setItems(vragen);
+        cbVragen.setItems(olVragen);
         cbVragen.getSelectionModel().select(0);
-        this.getChildren().addAll(cbVragen, kiesVraag, gok);
+        this.getChildren().addAll(cbVragen, btnKiesVraag, btnGok);
+        this.getStylesheets().add("css/footerView.css");
+        // CSS deed raar en wou niet meewerken :(
+        this.setStyle("-fx-padding: 10px;" +
+                "-fx-background-color: #2babd7");
     }
 
+    /**
+     * Deze getter wordt gebruikt om de vraag uit de combobox te krijgen
+     *
+     * @return String met de vraag
+     */
     public String getCbVragen() {
         return cbVragen.getValue();
     }
 
-    public Button getKiesVraag() {
-        return kiesVraag;
+    /**
+     * Getter voor de button kiesvraag zodat we een eventhandler kunnen plakken
+     * @return kiesVraag button
+     */
+    public Button getBtnKiesVraag() {
+        return btnKiesVraag;
     }
 
-    public Button getGok() {
-        return gok;
+    /**
+     * Getter voor de button gok zodat we een eventhandler kunnen plakken
+     * @return gok button
+     */
+    public Button getBtnGok() {
+        return btnGok;
     }
 
 }

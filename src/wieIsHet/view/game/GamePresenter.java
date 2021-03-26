@@ -31,6 +31,15 @@ import wieIsHet.view.start.StartView;
 import wieIsHet.view.verwijder.VerwijderPersPresenter;
 import wieIsHet.view.verwijder.VerwijderPersView;
 
+/**
+ * Deze presenter klassen is onze linker hand in deze spel en doet veel werk om een goede tentoonstelling te bereiden
+ * Daarmee dat ik voor deze presenter een extra documentatie schrijf.
+ * <p>
+ * We love you GamePresenter
+ *
+ * @author LeventHAN
+ */
+
 public class GamePresenter {
     MainModel model;
     GameView gameView;
@@ -40,7 +49,7 @@ public class GamePresenter {
     String gekozenPersonageSpeler1;
     int row = 0;
     int col = 0;
-    boolean set=false;
+    boolean set = false;
 
     public GamePresenter(MainModel model, GameView gameView) {
         this.model = model;
@@ -58,14 +67,13 @@ public class GamePresenter {
 
     private void updateView() {
         // Vult de gameView met data uit model
-        // TODO: Speler vs Speler logic
+        // TODO: Speler vs Speler logic voor v2!
         if (model.gameFinished()) {
             showFinishedDialog();
         }
         // Wij zetten de gekozen personage hier vast.
         rightSidebarView.lblSpeler1Personage.setText(gekozenPersonageSpeler1);
-        rightSidebarView.personageImg1.setImage(new Image("/images/personages/"+gekozenPersonageSpeler1+".png"));
-
+        rightSidebarView.personageImg1.setImage(new Image("/images/personages/" + gekozenPersonageSpeler1 + ".png"));
 
 
         updatePersonages();
@@ -76,8 +84,7 @@ public class GamePresenter {
     }
 
 
-
-    public void addWindowEventHandlers () {
+    public void addWindowEventHandlers() {
         // Window event handlers (anon. inner klassen)
         // Koppeling via gameView.getScene().getWindow()
         gameView.getScene().getWindow().setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -95,6 +102,7 @@ public class GamePresenter {
                 if (alert.getResult().equals(no)) {
                     event.consume();
                 }
+                // Deze zal in V2 gebruikt worden!
 //                else if (alert.getResult().equals(yes)) {
 //                    try {
 //                        model.saveGame();
@@ -118,7 +126,7 @@ public class GamePresenter {
         // model en zorgen voor een update van de gameView.
         addMenuEventHandlers();
 
-        footerView.getGok().setOnAction(new EventHandler<ActionEvent>() {
+        footerView.getBtnGok().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 GokView gokView = new GokView();
@@ -131,25 +139,24 @@ public class GamePresenter {
             }
         });
 
-        footerView.getKiesVraag().setOnAction(new EventHandler<ActionEvent>() {
+        footerView.getBtnKiesVraag().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                if (model.getAlleVragenSpeler1().getGevraagdeVragen()==model.getAlleVragenSpeler1().getSize()) {
+                if (model.getAlleVragenSpeler1().getGevraagdeVragen() == model.getAlleVragenSpeler1().getVragen().size()) {
                     return;
                 }
-                Log.debug("De gekozen vraag is "+footerView.getCbVragen());
-                // model.getAlleVragenSpeler1().getVragen().remove(i);
+                Log.debug("De gekozen vraag is " + footerView.getCbVragen());
                 model.getAlleVragenSpeler1().getVragen().forEach(vraag -> {
-                    if(footerView.getCbVragen().equals(vraag.getVraag())){
+                    if (footerView.getCbVragen().equals(vraag.getVraag())) {
                         vraag.setGevraagd(true);
                         ChoiceDialog<String> answer = new ChoiceDialog<String>("Ok", "Ok");
-                        answer.setTitle("Antwoord voor: "+vraag.getVraag());
-                        answer.setHeaderText("De tegenstaander zegt: "+(model.checkVraagSpeler1(vraag)? "JA!" : "NEEN!"));
-                        answer.setGraphic(new ImageView("/images/answers/"+ (model.checkVraagSpeler1(vraag)? "yes" : "no") +".png"));
+                        answer.setTitle("Antwoord voor: " + vraag.getVraag());
+                        answer.setHeaderText("De tegenstaander zegt: " + (model.checkVraagSpeler1(vraag) ? "JA!" : "NEEN!"));
+                        answer.setGraphic(new ImageView("/images/answers/" + (model.checkVraagSpeler1(vraag) ? "yes" : "no") + ".png"));
                         answer.setContentText("Je gaat nu personages mogen elimineren!");
                         answer.showAndWait();
                         String result = answer.getResult();
-                        if(result==null || result.equals("Ok")) {
+                        if (result == null || result.equals("Ok")) {
 
                             VerwijderPersView verwijderView = new VerwijderPersView();
                             VerwijderPersPresenter verwijderPresenter = new VerwijderPersPresenter(model, verwijderView);
@@ -170,23 +177,23 @@ public class GamePresenter {
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
-                    if(model.isTurnSpeler1()) {
+                    if (model.isTurnSpeler1()) {
                         model.getAllPersonagesSpeler1().getPersonages().forEach(personage -> {
-                            if(button.getText().equals(personage.getNaam())) {
+                            if (button.getText().equals(personage.getNaam())) {
                                 ChoiceDialog<String> zoom = new ChoiceDialog<String>("Ga terug", "Ga terug");
                                 zoom.setTitle("Zoom versie van de personage.");
-                                zoom.setHeaderText("Deze personage is: "+personage.getNaam());
-                                zoom.setGraphic(new ImageView("/images/personages/"+personage.getNaam()+".png"));
+                                zoom.setHeaderText("Deze personage is: " + personage.getNaam());
+                                zoom.setGraphic(new ImageView("/images/personages/" + personage.getNaam() + ".png"));
                                 zoom.showAndWait();
                             }
                         });
                     } else {
                         model.getAllPersonagesSpeler2().getPersonages().forEach(personage -> {
-                            if(button.getText().equals(personage.getNaam())) {
+                            if (button.getText().equals(personage.getNaam())) {
                                 ChoiceDialog<String> zoom = new ChoiceDialog<String>("Ga terug", "Ga terug");
                                 zoom.setTitle("Zoom versie van de personage.");
-                                zoom.setHeaderText("Deze personage is: "+personage.getNaam());
-                                zoom.setGraphic(new ImageView("/images/personages/"+personage.getNaam()+".png"));
+                                zoom.setHeaderText("Deze personage is: " + personage.getNaam());
+                                zoom.setGraphic(new ImageView("/images/personages/" + personage.getNaam() + ".png"));
                                 zoom.showAndWait();
                             }
                         });
@@ -198,23 +205,23 @@ public class GamePresenter {
 
     private void updatePersonages() {
 
-        if(!set){
+        if (!set) {
             model.getAllPersonagesSpeler1().getPersonages().forEach(personage -> {
-                if(!personage.isActive()) return;
+                if (!personage.isActive()) return;
 
                 String persoonNaam;
 
                 persoonNaam = personage.getNaam();
-                String loc = "/images/personages/"+persoonNaam+".png";
-                Knop knopje = new Knop(80,80,loc,persoonNaam);
+                String loc = "/images/personages/" + persoonNaam + ".png";
+                Knop knopje = new Knop(80, 80, loc, persoonNaam);
                 GridPane.setHgrow(knopje, Priority.ALWAYS);
                 GridPane.setHgrow(knopje, Priority.ALWAYS);
                 // So we can add eventhandlers to all the buttons :P
                 knopje.setContentDisplay(ContentDisplay.TOP);
                 zoomPersView.getPersonagesButtons().add(knopje);
-                if(row%5==0) {
+                if (row % 5 == 0) {
                     col++;
-                    row=0;
+                    row = 0;
                 }
                 zoomPersView.add(knopje, row, col);
                 row++;
@@ -227,11 +234,11 @@ public class GamePresenter {
     private void updateVragen() {
 
         // Clear out de vragen zodat er geen dubbele komen
-        footerView.vragen.clear();
+        footerView.olVragen.clear();
         // Steek alle vragen die niet gevraagd zijn in den combobox
         model.getAlleVragenSpeler1().getVragen().forEach(vraag -> {
-            if(!vraag.isGevraagd()){
-                footerView.vragen.add(vraag.getVraag());
+            if (!vraag.isGevraagd()) {
+                footerView.olVragen.add(vraag.getVraag());
             }
         });
         // Maak den eerste item de selected as default
@@ -357,8 +364,8 @@ public class GamePresenter {
         ChoiceDialog<String> again = new ChoiceDialog<String>("Ok", "Ok", "Nope");
         if (model.playerLost()) {
             again.setTitle("You Lost!");
-            again.setHeaderText("U hebt verloren! De personage was: "+model.getGekozenPersoonSpeler2().getNaam());
-            again.setGraphic(new ImageView("/images/personages/"+model.getGekozenPersoonSpeler2().getNaam()+".png"));
+            again.setHeaderText("U hebt verloren! De personage was: " + model.getGekozenPersoonSpeler2().getNaam());
+            again.setGraphic(new ImageView("/images/personages/" + model.getGekozenPersoonSpeler2().getNaam() + ".png"));
         } else {
             again.setTitle("You Won!");
             again.setGraphic(new ImageView("/images/answers/won.png"));
@@ -370,7 +377,7 @@ public class GamePresenter {
         if (result == null || result.equals("Nope")) {
             Platform.exit();
         } else {
-            if (model.getAllPersonagesSpeler1().getAantalOvergeblevenActivePersonages()==0) return;
+            if (model.getAllPersonagesSpeler1().getAantalOvergeblevenActivePersonages() == 0) return;
             model.restart();
             StartView startView = new StartView();
             StartPresenter startPresenter = new StartPresenter(model, startView);

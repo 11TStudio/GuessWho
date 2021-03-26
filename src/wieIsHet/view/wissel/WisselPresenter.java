@@ -8,21 +8,18 @@ import javafx.scene.image.ImageView;
 import javafx.stage.WindowEvent;
 import wieIsHet.Log;
 import wieIsHet.model.MainModel;
-import wieIsHet.model.Personage;
 import wieIsHet.model.Vraag;
 import wieIsHet.view.game.GamePresenter;
 import wieIsHet.view.game.GameView;
 import wieIsHet.view.game.Knop;
-import wieIsHet.view.gok.GokPresenter;
-import wieIsHet.view.gok.GokView;
 import wieIsHet.view.start.StartPresenter;
 import wieIsHet.view.start.StartView;
 
 public class WisselPresenter {
     MainModel model;
     WisselView wisselView;
-    boolean set=false;
-    String antwoord="JA";
+    boolean set = false;
+    String antwoord = "JA";
 
     public WisselPresenter(MainModel model, WisselView wisselView) {
 
@@ -31,7 +28,6 @@ public class WisselPresenter {
 
         this.addEventHandlers();
         this.updateView();
-
 
 
     }
@@ -43,14 +39,14 @@ public class WisselPresenter {
         // Event handlers: roepen methodes aan uit het
         // model en zorgen voor een update van de view.
 
-        wisselView.getPersonagesButtons().forEach(button -> {
+        wisselView.getListPersonagesButtons().forEach(button -> {
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
                     switch (button.getText()) {
                         case "Ja!":
-                            if(antwoord.equals("JA")){
-                                if(model.gunstigOmTeGokken()){
+                            if (antwoord.equals("JA")) {
+                                if (model.gunstigOmTeGokken()) {
                                     String nPers = model.getRandomPersonageComputer();
                                     model.setFoundItSpeler2(model.getGekozenPersoonSpeler1().getNaam().equals(nPers));
                                     model.setWrongGokSpeler2(!model.getGekozenPersoonSpeler1().getNaam().equals(nPers));
@@ -69,8 +65,8 @@ public class WisselPresenter {
                             }
                             break;
                         default:
-                            if(antwoord.equals("NEE")){
-                                if(model.gunstigOmTeGokken()){
+                            if (antwoord.equals("NEE")) {
+                                if (model.gunstigOmTeGokken()) {
                                     String nPers = model.getRandomPersonageComputer();
                                     model.setFoundItSpeler2(model.getGekozenPersoonSpeler1().getNaam().equals(nPers));
                                     model.setWrongGokSpeler2(!model.getGekozenPersoonSpeler1().getNaam().equals(nPers));
@@ -135,11 +131,11 @@ public class WisselPresenter {
 
     private void putButtons() {
 
-        if(!set){
+        if (!set) {
 
             Vraag vraagje = model.getRandomVraagComputer();
             vraagje.setGevraagd(true);
-            if(!model.checkVraagSpeler2(vraagje)){
+            if (!model.checkVraagSpeler2(vraagje)) {
                 antwoord = "NEE";
             }
 
@@ -149,20 +145,20 @@ public class WisselPresenter {
             wisselView.add(lblVraag, 2, 5, 2, 2);
 
             String loc = "/images/answers/yes.png";
-            Knop knopje = new Knop(120,120,loc,"Ja!");
+            Knop knopje = new Knop(120, 120, loc, "Ja!");
             knopje.setContentDisplay(ContentDisplay.TOP);
-            wisselView.getPersonagesButtons().add(knopje);
+            wisselView.getListPersonagesButtons().add(knopje);
             wisselView.add(knopje, 2, 8, 1, 1);
 
 
             loc = "/images/answers/no.png";
-            knopje = new Knop(120,120,loc,"Nee!");
+            knopje = new Knop(120, 120, loc, "Nee!");
             knopje.setContentDisplay(ContentDisplay.TOP);
-            wisselView.getPersonagesButtons().add(knopje);
+            wisselView.getListPersonagesButtons().add(knopje);
             wisselView.add(knopje, 4, 8, 1, 1);
 
             addEventHandlers();
-            set=true;
+            set = true;
         }
 
 
@@ -173,8 +169,8 @@ public class WisselPresenter {
         ChoiceDialog<String> again = new ChoiceDialog<String>("Ok", "Ok", "Nope");
         if (model.playerLostComputerGok()) {
             again.setTitle("You Lost!");
-            again.setHeaderText("De computer heeft goed gegokt! De tegenstaander zijn personage was: "+model.getGekozenPersoonSpeler2().getNaam());
-            again.setGraphic(new ImageView("/images/personages/"+model.getGekozenPersoonSpeler2().getNaam()+".png"));
+            again.setHeaderText("De computer heeft goed gegokt! De tegenstaander zijn personage was: " + model.getGekozenPersoonSpeler2().getNaam());
+            again.setGraphic(new ImageView("/images/personages/" + model.getGekozenPersoonSpeler2().getNaam() + ".png"));
         } else {
             again.setTitle("You Won!");
             again.setGraphic(new ImageView("/images/answers/won.png"));

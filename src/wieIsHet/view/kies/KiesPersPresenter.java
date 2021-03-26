@@ -30,12 +30,12 @@ public class KiesPersPresenter {
         // aan de controls uit de view.
         // Event handlers: roepen methodes aan uit het
         // model en zorgen voor een update van de view.
-        kiesView.getPersonagesButtons().forEach(button -> {
+        kiesView.getListPersonagesButtons().forEach(button -> {
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
                     Random random = new Random();
-                    model.setGekozenPersoonSpeler2(model.getAllPersonagesSpeler2().getPersonageByIndex(random.nextInt(model.getSizePersonages2())));
+                    model.setGekozenPersoonSpeler2(model.getAllPersonagesSpeler2().getPersonageByIndex(random.nextInt(model.getAllPersonagesSpeler2().getPersonages().size())));
 
                     model.getAllPersonagesSpeler1().getPersonages().forEach(personage -> {
                         if(button.getText().equals(personage.getNaam())) {

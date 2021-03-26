@@ -23,11 +23,11 @@ public class ZoomPersView extends GridPane {
     private void initialiseNodes() {
         // attributen initialiseren
         titel = new Label("Klik op de personages om ze te vergroten!");
-        titel.setStyle("-fx-font-weight: 900; -fx-font-size: 30px;");
+        this.getStylesheets().add("css/zoomView.css");
     }
 
     private void layoutNodes() {
-        add(titel, 0, (model.getSizePersonages1()/5)+1, 5, 5);
+        add(titel, 0, (model.getAllPersonagesSpeler1().getPersonages().size()/5)+1, 5, 5);
         this.setHgap(20);
         this.setVgap(15);
         this.setPadding(new Insets(15, 15, 10, 15));

@@ -12,3 +12,5 @@ Adhv vragen kan je mensen “elimineren” om zo het snelste de te zoeken persoo
 In het begin van het spel mag je zelf een persoon kiezen die de computer moet vinden.
 
 De speler mag als eerste een vraag stellen. Deze vraag komt uit een vastgelegde lijst.
+
+Elk stap wordt duidelijk beschreven wat je moet doen, dus je kunt ook gewoon stap per stap gaan en de spel leren.

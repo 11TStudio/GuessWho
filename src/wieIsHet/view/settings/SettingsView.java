@@ -5,15 +5,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.VBox;
 
+/**
+ * View dat de settings toont
+ *
+ * @author LeventHAN
+ */
 public class SettingsView extends VBox {
     private CheckBox cbAutoPickEnable;
     private Button btnSave;
 
 
     public SettingsView() {
-        initialiseNodes ();
+        initialiseNodes();
         layoutNodes();
     }
+
     private void initialiseNodes() {
         cbAutoPickEnable = new CheckBox("Kies te raden persoon automatisch.");
         btnSave = new Button("Save");

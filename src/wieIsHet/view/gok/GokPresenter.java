@@ -22,7 +22,7 @@ public class GokPresenter {
     GokView gokView;
     int row = 0;
     int col = 0;
-    boolean set=false;
+    boolean set = false;
 
     public GokPresenter(MainModel model, GokView gokView) {
 
@@ -31,7 +31,6 @@ public class GokPresenter {
 
         this.addEventHandlers();
         this.updateView();
-
 
 
     }
@@ -47,9 +46,9 @@ public class GokPresenter {
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
-                    if(model.isTurnSpeler1()) {
+                    if (model.isTurnSpeler1()) {
                         model.getAllPersonagesSpeler1().getPersonages().forEach(personage -> {
-                            if(button.getText().equals(personage.getNaam())) {
+                            if (button.getText().equals(personage.getNaam())) {
                                 model.setFoundItSpeler1(model.getGekozenPersoonSpeler2().getNaam().equals(personage.getNaam()));
                                 model.setWrongGokSpeler1(!model.getGekozenPersoonSpeler2().getNaam().equals(personage.getNaam()));
                                 model.gameFinished();
@@ -59,10 +58,8 @@ public class GokPresenter {
                         });
                     } else {
                         model.getAllPersonagesSpeler2().getPersonages().forEach(personage -> {
-                            if(button.getText().equals(personage.getNaam())) {
-                                model.setFoundItSpeler1(model.getGekozenPersoonSpeler1().equals(personage));
-                                showFinishedDialog();
-                                updateView();
+                            if (button.getText().equals(personage.getNaam())) {
+                                // TODO: Speler 2 gokt
                             }
                         });
                     }
@@ -78,7 +75,7 @@ public class GokPresenter {
 
     }
 
-    public void addWindowEventHandlers () {
+    public void addWindowEventHandlers() {
         // Window event handlers (anon. inner klassen)
         // Koppeling via view.getScene().getWindow()
         gokView.getScene().getWindow().setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -112,30 +109,30 @@ public class GokPresenter {
 
     private void updatePersonages() {
 
-        if(!set){
+        if (!set) {
             model.getAllPersonagesSpeler1().getPersonages().forEach(personage -> {
-                if(!personage.isActive()) return;
+                if (!personage.isActive()) return;
 
                 String persoonNaam;
 
                 persoonNaam = personage.getNaam();
-                String loc = "/images/personages/"+persoonNaam+".png";
-                Knop knopje = new Knop(80,80,loc,persoonNaam);
+                String loc = "/images/personages/" + persoonNaam + ".png";
+                Knop knopje = new Knop(80, 80, loc, persoonNaam);
                 GridPane.setHgrow(knopje, Priority.ALWAYS);
                 GridPane.setHgrow(knopje, Priority.ALWAYS);
                 // So we can add eventhandlers to all the buttons :P
                 knopje.setContentDisplay(ContentDisplay.TOP);
                 gokView.getPersonagesButtons().add(knopje);
-                if(row%5==0) {
+                if (row % 5 == 0) {
                     col++;
-                    row=0;
+                    row = 0;
                 }
                 gokView.add(knopje, row, col);
                 row++;
 
             });
             addEventHandlers();
-            set=true;
+            set = true;
         }
 
 
@@ -147,9 +144,11 @@ public class GokPresenter {
         ChoiceDialog<String> again = new ChoiceDialog<String>("Ok", "Ok", "Nope");
         if (model.playerLost()) {
             again.setTitle("You Lost!");
-            again.setHeaderText("U hebt verloren! De personage was: "+model.getGekozenPersoonSpeler2().getNaam());
-            again.setGraphic(new ImageView("/images/personages/"+model.getGekozenPersoonSpeler2().getNaam()+".png"));
+            Log.debug("De speler 1 heeft verloren.");
+            again.setHeaderText("U hebt verloren! De personage was: " + model.getGekozenPersoonSpeler2().getNaam());
+            again.setGraphic(new ImageView("/images/personages/" + model.getGekozenPersoonSpeler2().getNaam() + ".png"));
         } else {
+            Log.debug("De speler 1 heeft gewonnen.");
             again.setTitle("You Won!");
             again.setGraphic(new ImageView("/images/answers/won.png"));
             again.setHeaderText("U hebt het spel gewonnen!");

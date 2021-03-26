@@ -5,9 +5,12 @@ import java.io.*;
 
 /**
  * Deze klasse is verantwoordelijk voor het opslagen en laden van een spel.
- * Het spel wordt opgeslagen naar een binair bestand in de rootfolder van het project
+ * Het spel wordt opgeslagen naar een bestand in de rootfolder van het project.
+ * <p>
+ * Deze functionaliteit wordt bij v1.0 niet gebruikt en is bedoeld voor de v2.0!!!
+ *
+ * @since 2.0
  * @author LeventHAN
- * @version v1.0
  */
 public class WieIsHetSaver {
 
@@ -20,7 +23,7 @@ public class WieIsHetSaver {
 
     /**
      * Bewaart de settings, de personages, de button status, de spelers
-     * @throws IOException
+     * @throws IOException als er een fout is bij de saven()
      */
     public void save() throws IOException {
         //save game to file
@@ -35,8 +38,6 @@ public class WieIsHetSaver {
                 bw.write(person.toString());
                 bw.newLine();
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -46,8 +47,6 @@ public class WieIsHetSaver {
                 bw.write(person.toString());
                 bw.newLine();
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,7 +55,7 @@ public class WieIsHetSaver {
 
     /**
      * Laad de settings, de personages, de button status, de spelers
-     * @throws IOException
+     * @throws IOException In geval dat er fouten zijn.
      */
     public void load() throws IOException {
 

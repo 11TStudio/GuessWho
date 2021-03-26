@@ -6,7 +6,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
-
+/**
+ * Deze view toont de gekozen personage aan de spelers.
+ *
+ * @author LeventHAN
+ */
 public class RightSidebarView extends VBox {
     Label lblSpeler1Personage;
     String speler1PersonageNaam;
@@ -15,7 +19,7 @@ public class RightSidebarView extends VBox {
     Label lblTitelSpeler1;
     Label lblTitelSpeler2;
 
-    // TODO: Namen op een text bestand schrijven en lezen met scores
+    // TODO: in V2!!!
     Label lblSpeler1Naam;
     String speler1Naam;
     Label lblSpeler2Naam;
@@ -48,10 +52,12 @@ public class RightSidebarView extends VBox {
 
         lblSpeler2Personage = new Label("Wie is het???");
 
-        // Todo: Spelers naam nemen
+        // !!V2!!
+        // TODO: Spelers naam nemen
         // TODO: Spelers naam checken voor text file met spelerNaam;Score
 
-        String loc = "/images/personages/"+speler1PersonageNaam+".png";
+
+        String loc = "/images/personages/" + speler1PersonageNaam + ".png";
         personageSpeler1 = new Image(loc);
         personageImg1 = new ImageView(personageSpeler1);
         personageImg1.setFitHeight(80);

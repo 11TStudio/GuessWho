@@ -9,6 +9,9 @@ import wieIsHet.view.start.StartView;
 import wieIsHet.view.start.StartPresenter;
 
 
+/**
+ * Opstartklasse van de applicatie.
+ */
 public class Main extends Application {
 
     @Override
