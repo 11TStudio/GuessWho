@@ -1,9 +1,7 @@
 package wieIsHet.model;
 
-import wieIsHet.Log;
 
 import java.io.*;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -27,10 +25,14 @@ public class Vragen {
     public int getSize() {
         return vragen.size();
     }
-    // TODO: Deze werkt precies niet zo goed.
-    public int getVragenOver() {
-        int counter= (int) vragen.stream().filter(Vraag::isGevraagd).count();
-        Log.debug("Counter voor gestelde vragen staat op: "+counter);
+
+    public int getGevraagdeVragen() {
+        int counter = (int) vragen.stream().filter(Vraag::isGevraagd).count();
+        return counter;
+    }
+
+    public int getOvergeblevenVragen() {
+        int counter = (int) vragen.stream().filter(vraag -> !vraag.isGevraagd()).count();
         return counter;
     }
 
@@ -51,6 +53,8 @@ public class Vragen {
             e.printStackTrace();
         }
     }
+
+
 
 //    private void writeVragen() {
 //        // Hier aanvullen...

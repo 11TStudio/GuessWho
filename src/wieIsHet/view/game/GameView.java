@@ -1,13 +1,11 @@
 package wieIsHet.view.game;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
+
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 
 public class GameView  extends BorderPane {
-    private VerwijderPersView verwijderView;
+    private ZoomPersView verwijderView;
     private FooterView footer;
     private RightSidebarView rightSidebar;
     private MenuItem miExit;
@@ -26,7 +24,7 @@ public class GameView  extends BorderPane {
 
     private void initialiseNodes() {
         footer = new FooterView();
-        verwijderView = new VerwijderPersView();
+        verwijderView = new ZoomPersView();
         rightSidebar = new RightSidebarView();
         //menu
         miExit = new MenuItem("Exit");
@@ -49,11 +47,15 @@ public class GameView  extends BorderPane {
         setTop(menuBar);
 
         setBottom(footer);
+        footer.setStyle("-fx-padding: 10px;" +
+                "-fx-background-color: #2babd7");
         setCenter(verwijderView);
         setRight(rightSidebar);
+
+
     }
 
-    public VerwijderPersView getVerwijderView() {
+    public ZoomPersView getVerwijderView() {
         return verwijderView;
     }
 

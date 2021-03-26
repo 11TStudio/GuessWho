@@ -2,8 +2,6 @@ package wieIsHet.model;
 
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Deze klasse is verantwoordelijk voor het opslagen en laden van een spel.
@@ -77,15 +75,16 @@ public class WieIsHetSaver {
             while(line != null) {
                 String[] stukken = line.split(";");
                 // String naam,
-                // String heeftBaard,
-                // String oogKleur,
-                // String heeftBril,
-                // String heeftSnor,
-                // String typeGeslacht,
-                // String isKaal,
-                // String heeftHoofddeksel,
-                // String haarKleur
-                personage = new Personage(stukken[0], stukken[1], stukken[2], stukken[3], stukken[4], stukken[5], stukken[6], stukken[7], stukken[8], stukken[9]);
+                // boolean heeftBaard,
+                // enum oogKleur,
+                // boolean heeftBril,
+                // boolean heeftSnor,
+                // enum typeGeslacht,
+                // boolean isKaal,
+                // boolean heeftHoofddeksel,
+                // enum haarKleur
+                // boolean isActive
+                personage = new Personage(stukken[0], Boolean.parseBoolean(stukken[1]), Personage.kleurOog.valueOf(stukken[2]), Boolean.parseBoolean(stukken[3]), Boolean.parseBoolean(stukken[4]), Personage.geslachtType.valueOf(stukken[5]), Boolean.parseBoolean(stukken[6]), Boolean.parseBoolean(stukken[7]), Personage.kleurHaar.valueOf(stukken[8]), Boolean.parseBoolean(stukken[9]));
                 personagesSpeler1.getPersonages().add(personage);
                 line = reader.readLine(); // lees den volgende
             }
@@ -100,15 +99,16 @@ public class WieIsHetSaver {
             while(line != null) {
                 String[] stukken = line.split(";");
                 // String naam,
-                // String heeftBaard,
-                // String oogKleur,
-                // String heeftBril,
-                // String heeftSnor,
-                // String typeGeslacht,
-                // String isKaal,
-                // String heeftHoofddeksel,
-                // String haarKleur
-                personage = new Personage(stukken[0], stukken[1], stukken[2], stukken[3], stukken[4], stukken[5], stukken[6], stukken[7], stukken[8], stukken[9]);
+                // boolean heeftBaard,
+                // enum oogKleur,
+                // boolean heeftBril,
+                // boolean heeftSnor,
+                // enum typeGeslacht,
+                // boolean isKaal,
+                // boolean heeftHoofddeksel,
+                // enum haarKleur
+                // boolean isActive
+                personage = new Personage(stukken[0], Boolean.parseBoolean(stukken[1]), Personage.kleurOog.valueOf(stukken[2]), Boolean.parseBoolean(stukken[3]), Boolean.parseBoolean(stukken[4]), Personage.geslachtType.valueOf(stukken[5]), Boolean.parseBoolean(stukken[6]), Boolean.parseBoolean(stukken[7]), Personage.kleurHaar.valueOf(stukken[8]), Boolean.parseBoolean(stukken[9]));
                 personagesSpeler2.getPersonages().add(personage);
                 line = reader.readLine(); // lees den volgende
             }

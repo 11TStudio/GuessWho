@@ -1,10 +1,8 @@
 package wieIsHet.model;
 
-import wieIsHet.Log;
 
 import java.io.*;
 import java.util.*;
-import java.util.stream.DoubleStream;
 
 public class Personages {
     List<Personage> personages;
@@ -19,20 +17,6 @@ public class Personages {
     }
 
 
-    public List<Personage> getPersonages() {
-        return personages;
-    }
-
-    public int getSize() {
-        return personages.size();
-    }
-
-    public int getDeletedSize() {
-        int counter;
-        counter= (int) personages.stream().filter(personage -> personage.isActive().equals("JA")).count();
-        Log.debug("Counter van disabled persoanges staat op: "+counter);
-        return counter;
-    }
 
 
     private void readPersonages() {
@@ -43,15 +27,16 @@ public class Personages {
             while(line != null) {
                 String[] stukken = line.split(";");
                 // String naam,
-                // String heeftBaard,
-                // String oogKleur,
-                // String heeftBril,
-                // String heeftSnor,
-                // String typeGeslacht,
-                // String isKaal,
-                // String heeftHoofddeksel,
-                // String haarKleur
-                personage = new Personage(stukken[0], stukken[1], stukken[2], stukken[3], stukken[4], stukken[5], stukken[6], stukken[7], stukken[8], stukken[9]);
+                // boolean heeftBaard,
+                // enum oogKleur,
+                // boolean heeftBril,
+                // boolean heeftSnor,
+                // enum typeGeslacht,
+                // boolean isKaal,
+                // boolean heeftHoofddeksel,
+                // enum haarKleur
+                // boolean isActive
+                personage = new Personage(stukken[0], Boolean.parseBoolean(stukken[1]), Personage.kleurOog.valueOf(stukken[2]), Boolean.parseBoolean(stukken[3]), Boolean.parseBoolean(stukken[4]), Personage.geslachtType.valueOf(stukken[5]), Boolean.parseBoolean(stukken[6]), Boolean.parseBoolean(stukken[7]), Personage.kleurHaar.valueOf(stukken[8]), Boolean.parseBoolean(stukken[9]));
                 personages.add(personage);
                 line = reader.readLine(); // lees den volgende
             }
@@ -75,13 +60,36 @@ public class Personages {
         }
     }
 
-    public void removePersonage(Personage pers) {
-        personages.remove(pers);
-    }
 
     public Personage getPersonageByIndex(int index) {
         return personages.get(index);
     }
+
+
+    public Personages getOnlyActivePersonages() {
+        Personages activePersonages = null;
+        personages.forEach(personage -> {
+            if(personage.isActive()){
+                activePersonages.getPersonages().add(personage);
+            }
+        });
+        return activePersonages;
+    }
+
+    public List<Personage> getPersonages() {
+        return personages;
+    }
+
+    public int getSize() {
+        return personages.size();
+    }
+
+    public int getAantalOvergeblevenActivePersonages() {
+        int counter;
+        counter= (int) personages.stream().filter(Personage::isActive).count();
+        return counter;
+    }
+
 
     // Sorteerfunctie op String naam.
     public void sorteerGeslachtNaam() {

@@ -1,11 +1,13 @@
-package wieIsHet.view.game;
+package wieIsHet.view.verwijder;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import wieIsHet.model.MainModel;
+import wieIsHet.view.game.Knop;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,9 @@ public class VerwijderPersView extends GridPane {
     int row = 0;
     int col = 0;
     String persoonNaam;
+    Button btnGaVerder;
+    Label lblTitel;
+    Label lblDescriptionText;
 
     public VerwijderPersView() {
         this.model = new MainModel();
@@ -25,27 +30,19 @@ public class VerwijderPersView extends GridPane {
 
     private void initialiseNodes() {
         // attributen initialiseren
-        model.getAllPersonagesSpeler1().getPersonages().forEach(personage -> {
-            persoonNaam = personage.getNaam();
-            String loc = "/images/personages/"+persoonNaam+".png";
-            Knop knopje = new Knop(80,80,loc,persoonNaam);
-            setHgrow(knopje, Priority.ALWAYS);
-            setHgrow(knopje, Priority.ALWAYS);
-            // So we can add eventhandlers to all the buttons :P
-            knopje.setContentDisplay(ContentDisplay.TOP);
-            personagesButtons.add(knopje);
-            if(row%5==0) {
-                col++;
-                row=0;
-            }
-            this.add(knopje, row, col);
-            row++;
-        });
+        btnGaVerder = new Button("Ga Verder");
+        lblTitel = new Label("Verwijder Personages");
+        lblTitel.setStyle("-fx-font-weight: 900; -fx-font-size: 30px;");
+        lblDescriptionText = new Label("Klik de personages die u wilt verwijderen.");
+        lblDescriptionText.setStyle("-fx-font-size: 15px; -fx-background-color: lightgreen;");
     }
 
     private void layoutNodes() {
 
-        this.setGridLinesVisible(true);
+        // this.setGridLinesVisible(true);
+        add(lblTitel, 0, (model.getSizePersonages1()/5)+1, 3, 1);
+        add(lblDescriptionText, 0, (model.getSizePersonages1()/5)+2, 3, 1);
+        this.add(btnGaVerder, 0,(model.getSizePersonages1()/5)+3,2, 1);
         this.setHgap(20);
         this.setVgap(15);
         this.setPadding(new Insets(15, 15, 10, 15));
@@ -53,5 +50,9 @@ public class VerwijderPersView extends GridPane {
 
     public List<Button> getPersonagesButtons() {
         return personagesButtons;
+    }
+
+    public Button getBtnGaVerder() {
+        return btnGaVerder;
     }
 }

@@ -4,20 +4,42 @@ package wieIsHet.model;
 // Onze classe Persoange
 // Comparable implementeert altijd de klasse waar het implements.
 
+import java.util.List;
+
 public class Personage  {
+    // ENUMS maken we en gebruikgen we in de classe zelf
+    // en maken de mogelijkheden beperkt zo zoals we zelf willen
+    // ENUM voor geslacht enkel te kiezen uit MAN of VROUW
+    public enum geslachtType {
+        MAN, VROUW
+    }
 
+    // ENUM voor oog kleur enkel te kiezen uit onderstaande waarden
+    public enum kleurOog {
+        BLAUW, BRUIN, GRIJS
+    }
+
+    // ENUM voor haar kleur enkel te kiezen uit onderstaande waarden
+    public enum kleurHaar {
+        BLOND, ZWART, BRUIN, GEEN
+    }
+
+    // Define the attirbutes
     private String naam;
-    private String heeftBaard;
-    private String oogKleur;
-    private String heeftBril;
-    private String heeftSnor;
-    private String typeGeslacht;
-    private String isKaal;
-    private String heeftHoofddeksel;
-    private String haarKleur;
-    private String isActive;
+    private boolean heeftBaard;
+    private kleurOog oogKleur;
+    private boolean heeftBril;
+    private boolean heeftSnor;
+    private geslachtType typeGeslacht;
+    private boolean isKaal;
+    private boolean heeftHoofddeksel;
+    private kleurHaar haarKleur;
+    private boolean isActive;
 
-    public Personage(String naam, String heeftBaard, String oogKleur, String heeftBril, String heeftSnor, String typeGeslacht, String isKaal, String heeftHoofddeksel, String haarKleur, String status) {
+    // Constructor for the Personage
+
+
+    public Personage(String naam, boolean heeftBaard, kleurOog oogKleur, boolean heeftBril, boolean heeftSnor, geslachtType typeGeslacht, boolean isKaal, boolean heeftHoofddeksel, kleurHaar haarKleur, boolean isActive) {
         this.naam = naam;
         this.heeftBaard = heeftBaard;
         this.oogKleur = oogKleur;
@@ -27,53 +49,90 @@ public class Personage  {
         this.isKaal = isKaal;
         this.heeftHoofddeksel = heeftHoofddeksel;
         this.haarKleur = haarKleur;
-        this.isActive = status;
+        this.isActive = isActive;
     }
+
 
     public String getNaam() {
         return naam;
     }
 
-    public String isHeeftBaard() {
+    public void setNaam(String naam) {
+        this.naam = naam;
+    }
+
+    public boolean isHeeftBaard() {
         return heeftBaard;
     }
 
-    public String getOogKleur() {
+    public void setHeeftBaard(boolean heeftBaard) {
+        this.heeftBaard = heeftBaard;
+    }
+
+    public kleurOog getOogKleur() {
         return oogKleur;
     }
 
-    public String isHeeftBril() {
+    public void setOogKleur(kleurOog oogKleur) {
+        this.oogKleur = oogKleur;
+    }
+
+    public boolean isHeeftBril() {
         return heeftBril;
     }
 
-    public String isHeeftSnor() {
+    public void setHeeftBril(boolean heeftBril) {
+        this.heeftBril = heeftBril;
+    }
+
+    public boolean isHeeftSnor() {
         return heeftSnor;
     }
 
-    public String getTypeGeslacht() {
+    public void setHeeftSnor(boolean heeftSnor) {
+        this.heeftSnor = heeftSnor;
+    }
+
+    public geslachtType getTypeGeslacht() {
         return typeGeslacht;
     }
 
-    public String isKaal() {
+    public void setTypeGeslacht(geslachtType typeGeslacht) {
+        this.typeGeslacht = typeGeslacht;
+    }
+
+    public boolean isKaal() {
         return isKaal;
     }
 
-    public String isHeeftHoofddeksel() {
+    public void setKaal(boolean kaal) {
+        isKaal = kaal;
+    }
+
+    public boolean isHeeftHoofddeksel() {
         return heeftHoofddeksel;
     }
 
-    public String getHaarKleur() {
+    public void setHeeftHoofddeksel(boolean heeftHoofddeksel) {
+        this.heeftHoofddeksel = heeftHoofddeksel;
+    }
+
+    public kleurHaar getHaarKleur() {
         return haarKleur;
     }
 
-    public String isActive() {
+    public void setHaarKleur(kleurHaar haarKleur) {
+        this.haarKleur = haarKleur;
+    }
+
+    public boolean isActive() {
         return isActive;
     }
 
-    public void setInActive(boolean status) {
-        if(status) { isActive = "NEE"; return;}
-        isActive = "JA";
+    public void setActive(boolean active) {
+        isActive = active;
     }
+
 
     @Override
     public String toString() {

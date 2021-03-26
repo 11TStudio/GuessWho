@@ -1,16 +1,11 @@
 package wieIsHet.view.settings;
 
-import javafx.application.Platform;
-import javafx.scene.control.ChoiceDialog;
-import javafx.scene.image.ImageView;
-import wieIsHet.Log;
+
 import wieIsHet.model.MainModel;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
-import wieIsHet.view.game.GamePresenter;
-import wieIsHet.view.game.GameView;
 
 
 public class SettingsPresenter {

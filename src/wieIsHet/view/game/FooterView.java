@@ -2,12 +2,8 @@ package wieIsHet.view.game;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
 public class FooterView extends HBox {
@@ -23,7 +19,7 @@ public class FooterView extends HBox {
     }
 
     private void initialiseNodes() {
-        footer = new HBox(8);
+        footer = new HBox(20);
 
         cbVragen= new ComboBox<>();
         vragen = FXCollections.observableArrayList();
@@ -44,11 +40,9 @@ public class FooterView extends HBox {
     }
 
     private void layoutNodes() {
+
         cbVragen.setItems(vragen);
         cbVragen.getSelectionModel().select(0);
-        //footer.setPadding(new Insets(15, 12, 15, 12));
-        // this.getChildren().addAll(new Label("Dit is een test label"));
-        //footer.setStyle("-fx-background-color: #336699;");
         this.getChildren().addAll(cbVragen, kiesVraag, gok);
     }
 
@@ -64,8 +58,4 @@ public class FooterView extends HBox {
         return gok;
     }
 
-    public void removeVraag(String vraag) {
-        cbVragen.getItems().remove(vraag);
-        vragen.remove(vraag);
-    }
 }

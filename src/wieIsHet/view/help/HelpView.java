@@ -23,8 +23,8 @@ public class HelpView extends BorderPane {
 
     private void layoutNodes() {
         setCenter(taRules);
-        setPrefWidth(400);
-        setPrefHeight(300);
+        setPrefWidth(600);
+        setPrefHeight(600);
     }
 
     TextArea getTaRules() {
