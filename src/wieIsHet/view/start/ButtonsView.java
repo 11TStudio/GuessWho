@@ -3,6 +3,7 @@ package wieIsHet.view.start;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.*;
 import wieIsHet.view.game.Knop;
 
@@ -33,7 +34,7 @@ public class ButtonsView extends HBox {
         Knop btnStartPvC = new Knop(40, 60, "images/buttons/pvc.png", "Start PvC");
         Knop btnStartAbout = new Knop(40, 60, "images/buttons/pvp.png", "About Us");
         Knop btnExit = new Knop(40, 60, "images/buttons/pvp.png", "Exit");
-
+        btnStartPvP.setTooltip(new Tooltip("Moet nog gemaakt worden in V2!"));
 
         listStartSchermButtons.add(btnStartPvP);
         listStartSchermButtons.add(btnStartPvC);

@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -45,6 +46,18 @@ public class StartPresenter {
         // Event handlers: roepen methodes aan uit het
         // model en zorgen voor een update van de view.
         addMenuEventHandlers();
+        startView.getButtonsView().getListStartSchermButtons().get(0).setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                startView.getButtonsView().getListStartSchermButtons().get(0).setText("Later");
+            }
+        });
+        startView.getButtonsView().getListStartSchermButtons().get(0).setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                startView.getButtonsView().getListStartSchermButtons().get(0).setText("Start PvP");
+            }
+        });
         startView.getButtonsView().getListStartSchermButtons().forEach(button -> {
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -55,6 +68,7 @@ public class StartPresenter {
                             // TODO: Een systeem om de views te veranderen per click.
                             // IN V2!!!
                             Log.debug("User clicked to Start PvP button.");
+
 //                            GameView gameView = new GameView();
 //                            GamePresenter gamePresenter = new GamePresenter(model, gameView);
 //                            startView.getScene().setRoot(gameView);
@@ -84,6 +98,9 @@ public class StartPresenter {
                             aboutStage.setX(startView.getScene().getWindow().getX());
                             aboutStage.setY(startView.getScene().getWindow().getY() + 100);
                             aboutStage.showAndWait();
+                            break;
+                        case "Later":
+                            Log.debug("User clicked to PVP button.");
                             break;
                         default:
                             Log.debug("User clicked to Exit button.");
@@ -206,6 +223,7 @@ public class StartPresenter {
     public void addWindowEventHandlers() {
         // Window event handlers (anon. inner klassen)
         // Koppeling via view.getScene().getWindow()
+
         startView.getScene().getWindow().setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
