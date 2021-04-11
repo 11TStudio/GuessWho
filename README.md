@@ -5,7 +5,7 @@
 #### Wie is het? | Guess Who?
 
 [![GitHub contributors](https://img.shields.io/github/contributors/11TStudio/GuessWho.svg?style=flat-square)](https://github.com/11TStudio/GuessWho/graphs/contributors)
-[![GitHub release](https://img.shields.io/github/license/11TStudio/GuessWho.svg?style=flat-square)](https://github.com/11TStudio/GuessWho/blob/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/license/11TStudio/GuessWho.svg?style=flat-square)](https://github.com/11TStudio/GuessWho/blob/mainFX/LICENSE)
 
 <br>
 
